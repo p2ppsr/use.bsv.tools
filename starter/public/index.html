@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BSV Tools Starter</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <p class="kicker">No-spend first win</p>
+        <h1>Run one BSV-shaped app before you read the big docs.</h1>
+        <p>This starter checks your local wallet, then completes three visible flows in mock mode: paid API, private memory, and creation proof.</p>
+        <div class="actions">
+          <button id="runPreflight">Run wallet preflight</button>
+          <a href="https://use.bsv.tools/">Back to use.bsv.tools</a>
+        </div>
+      </section>
+
+      <section class="status-panel">
+        <h2>Wallet preflight</h2>
+        <pre id="preflightOutput">Run the preflight to see local wallet ports, auth state, and network.</pre>
+      </section>
+
+      <section class="grid">
+        <article>
+          <span>01</span>
+          <h2>Paid API</h2>
+          <p>Server returns HTTP 402, the UI retries with a mock payment receipt, and a paid result appears.</p>
+          <label for="paidPrompt">Prompt</label>
+          <textarea id="paidPrompt">Summarize why tiny payments are useful for AI APIs.</textarea>
+          <button id="runPaid">Run paid mock</button>
+          <pre id="paidOutput"></pre>
+        </article>
+
+        <article>
+          <span>02</span>
+          <h2>Private Memory</h2>
+          <p>Encrypt a note in the browser, store only ciphertext on the server, then decrypt it locally.</p>
+          <label for="memoryText">Private note</label>
+          <textarea id="memoryText">My first BSV app should show useful state before advanced concepts.</textarea>
+          <button id="saveMemory">Encrypt and save</button>
+          <button id="deleteMemory">Delete records</button>
+          <pre id="memoryOutput"></pre>
+        </article>
+
+        <article>
+          <span>03</span>
+          <h2>Creation Proof</h2>
+          <p>Hash artifact metadata, sign the proof in the browser, and verify the signature.</p>
+          <label for="proofTitle">Artifact title</label>
+          <input id="proofTitle" value="First BSV Tools build note">
+          <label for="proofBody">Artifact body</label>
+          <textarea id="proofBody">I generated a working local BSV starter flow.</textarea>
+          <button id="makeProof">Sign and verify</button>
+          <pre id="proofOutput"></pre>
+        </article>
+      </section>
+    </main>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

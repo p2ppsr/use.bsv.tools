@@ -23,21 +23,21 @@
         <span>use.bsv.tools</span>
       </a>
       <nav class="top-nav" aria-label="Primary navigation">
+        <a href="#starter">Starter</a>
         <a href="#paths">Paths</a>
         <a href="#agent">AI Prompt</a>
-        <a href="#toolkit">Toolkit</a>
       </nav>
     </header>
 
     <main>
       <section class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">Three useful BSV app patterns. One builder entry point.</p>
+          <p class="eyebrow">A runnable first win before the big docs.</p>
           <h1>Use BSV tools to ship apps with money, memory, and proof built in.</h1>
-          <p class="hero-text">Choose a starter, copy the agent prompt, and give your app wallet auth, tiny payments, private user-owned storage, or signed proof without starting from a blank file.</p>
+          <p class="hero-text">Clone the maintained starter, run wallet preflight, and complete paid API, private memory, and creation proof flows in no-spend mode before moving to mainnet tutorials.</p>
           <div class="hero-actions" aria-label="Primary actions">
-            <a class="button primary" href="#agent">Generate a build prompt</a>
-            <a class="button secondary" href="#paths">Pick a use case</a>
+            <a class="button primary" href="#starter">Run the starter</a>
+            <a class="button secondary" href="#agent">Generate a build prompt</a>
           </div>
           <div class="hero-proof" aria-label="Expected builder outcomes">
             <span>Wallet permission flow</span>
@@ -51,20 +51,36 @@
         </div>
       </section>
 
-      <section class="quick-start" aria-labelledby="quick-start-title">
+      <section class="quick-start" id="starter" aria-labelledby="quick-start-title">
         <div>
           <p class="section-kicker">Start here</p>
-          <h2 id="quick-start-title">Give an AI coding agent the right job.</h2>
+          <h2 id="quick-start-title">Run one maintained starter before touching the docs maze.</h2>
         </div>
         <div class="command-strip">
-          <code>Build me a BSV app that charges sats, stores private user data, or proves ownership.</code>
-          <button class="copy-button" data-copy-target="heroPrompt">Copy</button>
+          <code>git clone https://github.com/p2ppsr/use.bsv.tools.git && cd use.bsv.tools/starter && npm install && npm run preflight && npm run dev</code>
+          <button class="copy-button" data-copy-target="starterCommand">Copy</button>
+        </div>
+      </section>
+
+      <section class="starter-panel" aria-labelledby="starter-title">
+        <div class="starter-copy">
+          <p class="section-kicker">Verified path</p>
+          <h2 id="starter-title">What the starter proves on a clean machine.</h2>
+          <p>It does not pretend that funded wallets, payment middleware, storage services, or marketplace patch instructions are already first-run safe. It gives a working no-spend milestone and tells you exactly what the real wallet state is.</p>
+        </div>
+        <div class="starter-checks">
+          <div><strong>Wallet preflight</strong><span>Ports, app ownership, auth, network, and conflict guidance.</span></div>
+          <div><strong>Paid API</strong><span>HTTP 402 challenge, mock payment retry, server receipt.</span></div>
+          <div><strong>Private Memory</strong><span>Create, list, decrypt, and delete encrypted records.</span></div>
+          <div><strong>Creation Proof</strong><span>Hash metadata, sign proof, verify signature.</span></div>
+          <div><strong>CI smoke tests</strong><span>The repo tests the runnable path before deploying the site.</span></div>
+          <div><strong>Mainnet hooks</strong><span>Clear upgrade points instead of placeholder business logic.</span></div>
         </div>
       </section>
 
       <section class="paths" id="paths" aria-labelledby="paths-title">
         <div class="section-heading">
-          <p class="section-kicker">Best first wins</p>
+          <p class="section-kicker">After the starter</p>
           <h2 id="paths-title">Pick the payoff you want a new developer to feel.</h2>
         </div>
 
@@ -75,7 +91,7 @@
               <span class="path-time">10 min target</span>
             </div>
             <h3>Paid AI API</h3>
-            <p>Let an app charge a few sats for an AI result. No accounts, no Stripe setup, no API key billing ceremony.</p>
+            <p>Upgrade the starter's HTTP 402 mock into real AuthFetch/payment middleware once wallet preflight is clean.</p>
             <ul>
               <li>Wallet auth instead of signup</li>
               <li>Payment before expensive work</li>
@@ -90,7 +106,7 @@
               <span class="path-time">12 min target</span>
             </div>
             <h3>Private AI Memory</h3>
-            <p>Build a small AI notes or CRM memory app where the user owns encrypted data and grants wallet permissions.</p>
+            <p>Move from the starter's local encryption into wallet-owned records with create/list/read/delete states intact.</p>
             <ul>
               <li>Encrypted app records</li>
               <li>Portable user identity</li>
@@ -105,7 +121,7 @@
               <span class="path-time">15 min target</span>
             </div>
             <h3>Creation Proof</h3>
-            <p>Stamp an AI-generated artifact with signed creator identity, metadata, storage, and optional paid unlock.</p>
+            <p>Replace the starter's browser proof with wallet-backed signature, storage, and a shareable proof page.</p>
             <ul>
               <li>Signed provenance</li>
               <li>Shareable proof page</li>
@@ -119,8 +135,8 @@
       <section class="agent-panel" id="agent" aria-labelledby="agent-title">
         <div class="agent-sidebar">
           <p class="section-kicker">AI-native</p>
-          <h2 id="agent-title">Copy a prompt that asks for the BSV result, not boilerplate.</h2>
-          <p>New developers should not spend their first hour hand-editing setup files. They should ask an agent for a working slice and then inspect the wallet, payment, data, or proof behavior.</p>
+          <h2 id="agent-title">Copy a prompt that starts from the runnable starter.</h2>
+          <p>New developers should not spend their first hour reconciling ports, package warnings, and unfinished snippets. Start from the tested starter, then ask an agent to upgrade one path.</p>
           <div class="field">
             <label for="stack">Stack</label>
             <select id="stack">
@@ -154,25 +170,25 @@
           <h2 id="toolkit-title">The minimum kit a builder should touch first.</h2>
         </div>
         <div class="toolkit-grid">
-          <a class="tool-link" href="https://docs.projectbabbage.com/docs/quickstarts/getting-a-wallet">
+          <a class="tool-link" href="https://github.com/p2ppsr/use.bsv.tools/tree/master/starter">
             <span>01</span>
-            <strong>Get a wallet</strong>
-            <em>Install the permission surface your app will use.</em>
+            <strong>Run starter</strong>
+            <em>Clone, preflight, dev server, first visible win.</em>
           </a>
           <a class="tool-link" href="https://docs.projectbabbage.com/docs/guides/wallet/auth">
             <span>02</span>
-            <strong>Request auth</strong>
-            <em>Ask the user for identity-backed access.</em>
+            <strong>Wallet auth</strong>
+            <em>Reference docs after local wallet preflight passes.</em>
           </a>
           <a class="tool-link" href="https://docs.projectbabbage.com/docs/guides/wallet/transactions">
             <span>03</span>
-            <strong>Move sats</strong>
-            <em>Build tiny payments into real workflows.</em>
+            <strong>Payments</strong>
+            <em>Upgrade from mock receipt to low-value mainnet flow.</em>
           </a>
           <a class="tool-link" href="https://docs.projectbabbage.com/docs/guides/wallet">
             <span>04</span>
-            <strong>Store privately</strong>
-            <em>Keep user data encrypted and portable.</em>
+            <strong>Private data</strong>
+            <em>Keep the starter's visible states while swapping APIs.</em>
           </a>
         </div>
       </section>
@@ -185,7 +201,8 @@
       <a href="https://github.com/p2ppsr">GitHub</a>
     </footer>
 
-    <template id="heroPrompt">Build me a small BSV-powered app using the best current Babbage tools. Make the first milestone visible in under 10 minutes: wallet permission, one payment or signed action, and a clear success state. Prefer generated scaffolding and explain every manual step only when it is unavoidable.</template>
+    <template id="starterCommand">git clone https://github.com/p2ppsr/use.bsv.tools.git && cd use.bsv.tools/starter && npm install && npm run preflight && npm run dev</template>
+    <template id="heroPrompt">Start from https://github.com/p2ppsr/use.bsv.tools/tree/master/starter. Keep the no-spend starter working, then upgrade exactly one path to real BSV wallet behavior. Preserve wallet preflight, loading/error/success states, and the smoke tests. Do not invent API methods; if a BSV API is unclear, point me to the exact docs or package source before changing code.</template>
     <script src="/app.js" type="module"></script>
   </body>
 </html>

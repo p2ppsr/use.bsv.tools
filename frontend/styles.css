@@ -92,6 +92,7 @@ select {
 
 .hero-copy,
 .quick-start,
+.starter-panel,
 .paths,
 .agent-panel,
 .toolkit {
@@ -228,6 +229,48 @@ h3 {
   gap: 28px;
   align-items: center;
   padding: 40px 32px 76px;
+}
+
+.starter-panel {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.65fr) minmax(320px, 1fr);
+  gap: 22px;
+  padding: 20px 32px 76px;
+}
+
+.starter-copy {
+  max-width: 520px;
+}
+
+.starter-copy p {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.starter-checks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.starter-checks div {
+  display: grid;
+  gap: 8px;
+  min-height: 126px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  background: #0d1815;
+}
+
+.starter-checks strong {
+  color: #f2f7f2;
+  font-size: 17px;
+}
+
+.starter-checks span {
+  color: var(--muted);
+  line-height: 1.45;
 }
 
 .command-strip {
@@ -475,11 +518,13 @@ pre {
   }
 
   .quick-start,
+  .starter-panel,
   .agent-panel {
     grid-template-columns: 1fr;
   }
 
   .path-grid,
+  .starter-checks,
   .toolkit-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -498,6 +543,7 @@ pre {
   .hero,
   .quick-start,
   .paths,
+  .starter-panel,
   .agent-panel,
   .toolkit {
     padding-left: 18px;
@@ -527,6 +573,7 @@ pre {
   }
 
   .path-grid,
+  .starter-checks,
   .toolkit-grid {
     grid-template-columns: 1fr;
   }

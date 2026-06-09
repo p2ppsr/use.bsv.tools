@@ -27,6 +27,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Smoke test starter
+        run: npm run test:starter
+
       - name: Build CARS artifact
         run: npx cars build Babbage
 

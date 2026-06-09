@@ -6,7 +6,8 @@
   "scripts": {
     "build": "cars build Babbage",
     "deploy": "cars release now Babbage --network mainnet",
-    "serve": "npx http-server frontend -p 4175 -c-1"
+    "serve": "npx http-server frontend -p 4175 -c-1",
+    "test:starter": "npm --prefix starter test"
   },
   "devDependencies": {
     "@p2ppsr/cars-cli": "^1.2.13",

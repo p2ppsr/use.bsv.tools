@@ -64,11 +64,14 @@ Wallet/payment surface: ${walletHints[walletSelect.value]}
 
 What I want the first working slice to prove:
 - ${path.payoff}
+- Start from https://github.com/p2ppsr/use.bsv.tools/tree/master/starter and keep its no-spend mode working.
 - It should run locally with the fewest possible manual edits.
 - Prefer one command or generated scaffolding over hand-written setup.
+- Preserve wallet preflight plus visible empty, loading, success, and error states.
 
 Acceptance checks:
 ${path.checks.map((check) => `- ${check}`).join("\n")}
+- npm --prefix starter test still passes after the change.
 
 Use current Project Babbage / BSV wallet APIs where appropriate. If you are unsure about an API, pause and point me at the exact docs page instead of inventing method names. Keep the first milestone small enough that I can see the BSV-specific payoff before refactoring or polishing.`;
 }
