@@ -16,7 +16,7 @@ npm run preflight
 npm run dev
 ```
 
-The starter is deliberately dependency-light and no-spend by default. It includes diagnostic wallet preflight, a paid API mock flow, private encrypted memory, creation proof, and smoke tests.
+The starter uses the real BSV wallet surface: diagnostic wallet preflight, AuthFetch plus auth/payment middleware, wallet-encrypted private memory, wallet-signed creation proof, and smoke tests.
 
 ## Local Development
 

@@ -89,7 +89,7 @@
           <h2 id="quick-start-title">Run one maintained starter before touching the deeper docs.</h2>
         </div>
         <div class="command-strip">
-          <code id="starterCommand">git clone https://github.com/p2ppsr/use.bsv.tools.git && cd use.bsv.tools/starter && npm install && npm test && npm run preflight && npm run dev</code>
+          <code id="starterCommand">git clone https://github.com/p2ppsr/use.bsv.tools.git && cd use.bsv.tools/starter && npm install && npm run preflight && npm run dev</code>
           <button class="copy-button" data-copy-target="starterCommand">Copy</button>
         </div>
       </section>
@@ -98,15 +98,15 @@
         <div class="starter-copy">
           <p class="section-kicker">Verified path</p>
           <h2 id="starter-title">What the starter proves on a clean machine.</h2>
-          <p>It gives a working no-spend milestone and runs a real BRC-100 wallet readiness loop. A new builder should see product value first, then know exactly whether their local wallet is ready for a live mainnet flow.</p>
+          <p>It runs real wallet calls from the first useful click. A new builder should see product value first, then know exactly whether their local wallet is ready for production integration.</p>
         </div>
         <div class="starter-checks">
           <div><strong>Wallet preflight</strong><span>Ports, Origin headers, app ownership, auth, network, and conflict guidance.</span></div>
           <div><strong>Real wallet loop</strong><span>Derived key, encrypt/decrypt, sign/verify, and identity-key readiness.</span></div>
-          <div><strong>Paid API</strong><span>HTTP 402 challenge, mock payment retry, server receipt.</span></div>
-          <div><strong>Private Memory</strong><span>Create, list, decrypt, and delete encrypted records.</span></div>
-          <div><strong>Creation Proof</strong><span>Hash metadata, sign proof, verify signature.</span></div>
-          <div><strong>CI loopback gate</strong><span>Strict BRC-100 loopback wallet powered by @bsv/sdk ProtoWallet.</span></div>
+          <div><strong>Paid API</strong><span>AuthFetch plus BSV auth/payment middleware, with a real wallet-created payment.</span></div>
+          <div><strong>Private Memory</strong><span>Wallet encrypt/decrypt, list, reveal, and delete encrypted records.</span></div>
+          <div><strong>Creation Proof</strong><span>Wallet hash, sign, derived public key, and verify signature.</span></div>
+          <div><strong>QA loopback gate</strong><span>Strict BRC-100 loopback wallet covering crypto and payment middleware.</span></div>
         </div>
       </section>
 
@@ -124,7 +124,7 @@
               <span class="path-time">10 min target</span>
             </div>
             <h3>Paid AI API</h3>
-            <p>Upgrade the starter's HTTP 402 mock into real AuthFetch/payment middleware once wallet preflight is clean.</p>
+            <p>Start from the working AuthFetch/payment middleware path and swap in the expensive API work you want to charge for.</p>
             <ul>
               <li>Wallet auth instead of signup</li>
               <li>Payment before expensive work</li>
@@ -139,7 +139,7 @@
               <span class="path-time">12 min target</span>
             </div>
             <h3>Private AI Memory</h3>
-            <p>Move from the starter's local encryption into wallet-owned records with create/list/read/delete states intact.</p>
+            <p>Start from wallet-owned records with create/list/read/delete states intact.</p>
             <ul>
               <li>Encrypted app records</li>
               <li>Portable user identity</li>
@@ -154,7 +154,7 @@
               <span class="path-time">15 min target</span>
             </div>
             <h3>Creation Proof</h3>
-            <p>Replace the starter's browser proof with wallet-backed signature, storage, and a shareable proof page.</p>
+            <p>Start from the wallet-backed signature and add storage, sharing, licensing, or paid unlock.</p>
             <ul>
               <li>Signed provenance</li>
               <li>Shareable proof page</li>
@@ -216,7 +216,7 @@
           <a class="tool-link" href="https://docs.projectbabbage.com/docs/guides/wallet/transactions">
             <span>03</span>
             <strong>Payments</strong>
-            <em>Upgrade from mock receipt to low-value mainnet flow.</em>
+            <em>Understand the low-value mainnet flow behind the starter.</em>
           </a>
           <a class="tool-link" href="https://docs.projectbabbage.com/docs/guides/wallet">
             <span>04</span>
@@ -301,7 +301,7 @@
     </footer>
 
     <template id="starterCommand">git clone https://github.com/p2ppsr/use.bsv.tools.git && cd use.bsv.tools/starter && npm install && npm run preflight && npm run dev</template>
-    <template id="heroPrompt">Start from https://github.com/p2ppsr/use.bsv.tools/tree/master/starter. Keep the no-spend starter working, then upgrade exactly one path to real BSV wallet behavior. Preserve the value proposition: wallet as account, payment at the moment of use, user-owned private data, or signed proof. Preserve wallet preflight, loading/error/success states, and the smoke tests. Do not invent API methods; if a BSV API is unclear, point me to the exact docs or package source before changing code.</template>
+    <template id="heroPrompt">Start from https://github.com/p2ppsr/use.bsv.tools/tree/master/starter. Keep the real wallet behavior working, then extend exactly one path into a product slice. Preserve the value proposition: wallet as account, payment at the moment of use, user-owned private data, or signed proof. Preserve wallet preflight, loading/error/success states, and the smoke tests. Do not invent API methods; if a BSV API is unclear, point me to the exact docs or package source before changing code.</template>
     <script src="/app.js" type="module"></script>
   </body>
 </html>

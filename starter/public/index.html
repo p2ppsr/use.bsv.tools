@@ -10,8 +10,8 @@
     <main class="shell">
       <section class="hero">
         <p class="kicker">Real wallet loop first</p>
-        <h1>Run a BSV app that can prove your wallet is actually usable.</h1>
-        <p>This starter checks a real BRC-100 wallet loop, then completes three no-spend flows you can replace with mainnet services when readiness is green.</p>
+        <h1>Run a BSV app that uses your wallet for real.</h1>
+        <p>This starter calls a local BRC-100 wallet for paid requests, private data, and signed proof. If permission is needed, the wallet prompts and the request waits for the user.</p>
         <div class="actions">
           <button id="runPreflight">Run wallet preflight</button>
           <a href="https://use.bsv.tools/">Back to use.bsv.tools</a>
@@ -27,17 +27,17 @@
         <article>
           <span>01</span>
           <h2>Paid API</h2>
-          <p>Server returns HTTP 402, the UI retries with a mock payment receipt, and a paid result appears.</p>
+          <p>Server uses AuthFetch plus BSV auth/payment middleware. The wallet creates the payment, then the protected route returns a paid result.</p>
           <label for="paidPrompt">Prompt</label>
           <textarea id="paidPrompt">Summarize why tiny payments are useful for AI APIs.</textarea>
-          <button id="runPaid">Run paid mock</button>
+          <button id="runPaid">Run paid request</button>
           <pre id="paidOutput"></pre>
         </article>
 
         <article>
           <span>02</span>
           <h2>Private Memory</h2>
-          <p>Encrypt a note in the browser, store only ciphertext on the server, then decrypt it locally.</p>
+          <p>The wallet encrypts the note, the server stores ciphertext, and the wallet decrypts it again to prove the permission path works.</p>
           <label for="memoryText">Private note</label>
           <textarea id="memoryText">My first BSV app should show useful state before advanced concepts.</textarea>
           <button id="saveMemory">Encrypt and save</button>
@@ -48,7 +48,7 @@
         <article>
           <span>03</span>
           <h2>Creation Proof</h2>
-          <p>Hash artifact metadata, sign the proof in the browser, and verify the signature.</p>
+          <p>The wallet signs artifact metadata and verifies the signature with the same wallet-derived key.</p>
           <label for="proofTitle">Artifact title</label>
           <input id="proofTitle" value="First BSV Tools build note">
           <label for="proofBody">Artifact body</label>

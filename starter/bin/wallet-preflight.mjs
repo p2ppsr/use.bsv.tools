@@ -389,7 +389,7 @@ export async function runPreflight({
     network,
     realWalletLoopReady,
     identityKeyReady,
-    starterMode: mainnetReady ? "real wallet ready" : "no-spend mock",
+    starterMode: mainnetReady ? "real wallet ready" : "real wallet required",
     canRunStarter: true,
     mainnetReady,
     blockers,
@@ -437,8 +437,8 @@ export async function runPreflight({
     console.log("\nWarnings");
     for (const warning of summary.warnings) console.log(`  - ${warning}`);
   }
-  console.log("\nThe starter can run in no-spend mock mode even when production wallet readiness fails.");
-  console.log("Use --strict when CI or a mainnet-upgrade script should fail unless the full real-wallet loop is ready.");
+  console.log("\nThe starter can open while wallet readiness is being fixed, but the app flows call a real wallet.");
+  console.log("Use --strict when CI or a production-readiness script should fail unless the full real-wallet loop is ready.");
   console.log("Use --require-identity to fail unless identity-key revelation is also ready.");
   console.log("\nIf both BSV Desktop and Metanet Client are installed, only one app can own the same local wallet port at a time.");
   console.log("Quit the extra wallet app if port 3321 is already bound by the wrong process.");

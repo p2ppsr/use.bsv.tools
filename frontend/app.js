@@ -72,7 +72,7 @@ Wallet/payment surface: ${walletHints[walletSelect.value]}
 
 What I want the first working slice to prove:
 - ${path.payoff}
-- Start from https://github.com/p2ppsr/use.bsv.tools/tree/master/starter and keep its no-spend mode working.
+- Start from https://github.com/p2ppsr/use.bsv.tools/tree/master/starter and keep its real wallet flows working.
 - It should run locally with the fewest possible manual edits.
 - Prefer one command or generated scaffolding over hand-written setup.
 - Keep the value visible: money, identity, private data, or proof should be part of the product behavior, not background plumbing.
