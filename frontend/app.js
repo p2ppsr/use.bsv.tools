@@ -37,7 +37,10 @@ const pathData = {
   }
 };
 
-const USERCOM_ENDPOINT = "https://usercom.babbage.systems/submit";
+const USERCOM_BASE = "https://usercom.babbage.systems";
+const USERCOM_SUBMIT_ENDPOINT = `${USERCOM_BASE}/submit`;
+const USERCOM_SIGNAL_ENDPOINT = `${USERCOM_BASE}/signal`;
+const USERCOM_SOURCE = "use.bsv.tools";
 
 const stackHints = {
   react: "Use React + TypeScript with a small Vite frontend. Keep files minimal and readable.",
@@ -60,6 +63,71 @@ const feedbackForm = document.querySelector("#feedbackForm");
 const feedbackStatus = document.querySelector("#feedbackStatus");
 const feedbackSubmit = document.querySelector("#feedbackSubmit");
 let activePath = "paid-agent";
+
+function randomId() {
+  if (window.crypto?.randomUUID) return window.crypto.randomUUID();
+  return `id-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+
+function getStoredId(storage, key) {
+  try {
+    const existing = storage.getItem(key);
+    if (existing) return existing;
+    const created = randomId();
+    storage.setItem(key, created);
+    return created;
+  } catch {
+    return undefined;
+  }
+}
+
+function cleanContext(context = {}) {
+  return Object.fromEntries(
+    Object.entries(context).filter(([, value]) => value !== undefined && value !== null && value !== "")
+  );
+}
+
+function tagValue(value) {
+  return String(value)
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9:._-]/g, "")
+    .slice(0, 80);
+}
+
+function usercomMetadata({ surface, tags = [], context = {} } = {}) {
+  return {
+    source: USERCOM_SOURCE,
+    surface,
+    url: window.location.href,
+    path: window.location.pathname + window.location.hash,
+    referrer: document.referrer || undefined,
+    anonymousId: getStoredId(window.localStorage, "use_bsv_tools_anonymous_id"),
+    sessionId: getStoredId(window.sessionStorage, "use_bsv_tools_session_id"),
+    tags: [
+      surface ? `surface:${tagValue(surface)}` : undefined,
+      ...tags
+    ].filter(Boolean),
+    context: cleanContext(context)
+  };
+}
+
+function postSignal(name, metadata = {}) {
+  try {
+    fetch(USERCOM_SIGNAL_ENDPOINT, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        name,
+        ...metadata
+      }),
+      keepalive: true
+    }).catch(() => {});
+  } catch {
+    // Analytics must not interrupt the builder flow.
+  }
+}
 
 function renderPrompt() {
   const path = pathData[activePath];
@@ -91,6 +159,14 @@ function selectPath(pathKey) {
     card.classList.toggle("selected", card.dataset.pathCard === pathKey);
   });
   renderPrompt();
+  postSignal("builder.path_selected", usercomMetadata({
+    surface: "paths",
+    tags: [`path:${pathKey}`],
+    context: {
+      pathKey,
+      label: pathData[pathKey].label
+    }
+  }));
 }
 
 async function copyText(text, button) {
@@ -119,22 +195,36 @@ function buildFeedbackPayload(formData) {
   const blocker = getFormValue(formData, "blocker") || "None provided";
   const feedback = getFormValue(formData, "feedback");
   const selectedPath = pathData[activePath].label.replace(" prompt", "");
+  const email = getFormValue(formData, "email");
 
   return {
     type: "feedback",
     name: getFormValue(formData, "name") || undefined,
-    email: getFormValue(formData, "email"),
+    email: email || undefined,
     subject: `use.bsv.tools feedback: ${stage} / ${goal}`,
-    feedback: [
-      "Source: use.bsv.tools",
-      `Selected path: ${selectedPath}`,
-      `Stage: ${stage}`,
-      `Desired value: ${goal}`,
-      `Biggest blocker: ${blocker}`,
-      "",
-      feedback
-    ].join("\n"),
-    newsletterSubscribe: formData.get("newsletterSubscribe") === "on"
+    feedback,
+    newsletterSubscribe: formData.get("newsletterSubscribe") === "on",
+    ...usercomMetadata({
+      surface: "first-builder-feedback",
+      tags: [
+        "intent:first-builder-feedback",
+        `path:${activePath}`,
+        `stage:${stage}`,
+        `goal:${goal}`,
+        `blocker:${blocker}`,
+        `stack:${stackSelect.value}`,
+        `wallet:${walletSelect.value}`
+      ],
+      context: {
+        selectedPathKey: activePath,
+        selectedPath,
+        stage,
+        desiredValue: goal,
+        blocker,
+        stack: stackSelect.value,
+        walletSurface: walletSelect.value
+      }
+    })
   };
 }
 
@@ -142,7 +232,7 @@ async function submitFeedback(event) {
   event.preventDefault();
 
   if (!feedbackForm.reportValidity()) {
-    setFeedbackStatus("Please add an email and the feedback we should act on.", "error");
+    setFeedbackStatus("Please add the feedback we should act on.", "error");
     return;
   }
 
@@ -154,7 +244,7 @@ async function submitFeedback(event) {
   const timeout = setTimeout(() => controller.abort(), 10000);
 
   try {
-    const response = await fetch(USERCOM_ENDPOINT, {
+    const response = await fetch(USERCOM_SUBMIT_ENDPOINT, {
       method: "POST",
       headers: {
         "content-type": "application/json"
@@ -197,10 +287,43 @@ document.querySelectorAll("[data-copy-target]").forEach((button) => {
       ? promptOutput.textContent
       : document.querySelector(`#${target}`).innerHTML.trim();
     await copyText(text, button);
+    postSignal("builder.copy_clicked", usercomMetadata({
+      surface: "copy-control",
+      tags: [`copy:${target}`],
+      context: {
+        target,
+        activePath,
+        stack: stackSelect.value,
+        walletSurface: walletSelect.value
+      }
+    }));
   });
 });
 
-stackSelect.addEventListener("change", renderPrompt);
-walletSelect.addEventListener("change", renderPrompt);
+stackSelect.addEventListener("change", () => {
+  renderPrompt();
+  postSignal("builder.stack_changed", usercomMetadata({
+    surface: "agent-prompt-controls",
+    tags: [`stack:${stackSelect.value}`],
+    context: { stack: stackSelect.value, activePath }
+  }));
+});
+walletSelect.addEventListener("change", () => {
+  renderPrompt();
+  postSignal("builder.wallet_surface_changed", usercomMetadata({
+    surface: "agent-prompt-controls",
+    tags: [`wallet:${walletSelect.value}`],
+    context: { walletSurface: walletSelect.value, activePath }
+  }));
+});
 feedbackForm.addEventListener("submit", submitFeedback);
 renderPrompt();
+postSignal("page.view", usercomMetadata({
+  surface: "home",
+  tags: ["intent:first-builder-entry"],
+  context: {
+    activePath,
+    stack: stackSelect.value,
+    walletSurface: walletSelect.value
+  }
+}));

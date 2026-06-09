@@ -10,6 +10,7 @@ const requiredHtml = [
   "First hundred builders",
   'id="feedbackForm"',
   'id="feedbackEmail"',
+  "Email <span>optional</span>",
   'id="feedbackMessage"',
   "Prefer GitHub? Open an issue.",
   'id="starterCommand"',
@@ -27,10 +28,14 @@ for (const value of requiredHtml) {
 }
 
 const requiredJs = [
-  'const USERCOM_ENDPOINT = "https://usercom.babbage.systems/submit";',
+  'const USERCOM_BASE = "https://usercom.babbage.systems";',
+  "const USERCOM_SUBMIT_ENDPOINT",
+  "const USERCOM_SIGNAL_ENDPOINT",
   'type: "feedback"',
   "newsletterSubscribe",
-  "Source: use.bsv.tools",
+  "source: USERCOM_SOURCE",
+  'surface: "first-builder-feedback"',
+  'postSignal("page.view"',
   "submitFeedback",
   "Keep the value visible"
 ];
@@ -43,6 +48,12 @@ assert.match(
   js,
   /subject:\s*`use\.bsv\.tools feedback:/,
   "feedback payload subject should identify use.bsv.tools"
+);
+
+assert.doesNotMatch(
+  html,
+  /id="feedbackEmail"[^>]*required/,
+  "feedback email should be optional"
 );
 
 console.log("Frontend smoke checks passed.");

@@ -472,6 +472,11 @@ label {
   font-weight: 700;
 }
 
+label span {
+  color: var(--muted);
+  font-weight: 600;
+}
+
 select {
   width: 100%;
   min-height: 44px;
