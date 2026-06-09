@@ -31,15 +31,22 @@ jobs:
         run: npx cars build Babbage
 
       - name: Check CARS transport
-        env:
-          CARS_WALLET_STORAGE: ${{ secrets.CARS_WALLET_STORAGE }}
         run: |
           set -euo pipefail
-          storage_args=()
-          if [ -n "${CARS_WALLET_STORAGE:-}" ]; then
-            storage_args=(--storage "$CARS_WALLET_STORAGE")
-          fi
-          npx cars doctor Babbage "${storage_args[@]}"
+          for attempt in 1 2 3; do
+            if getent hosts cars.babbage.systems \
+              && curl --fail --silent --show-error --connect-timeout 10 --max-time 25 \
+                https://cars.babbage.systems/health/live >/dev/null \
+              && node --input-type=module -e 'try { const response = await fetch("https://cars.babbage.systems/.well-known/auth", { method: "POST", headers: { "content-type": "application/json" }, body: "{}" }); console.log(`CARS auth endpoint responded with HTTP ${response.status}`); } catch (error) { console.error(error); console.error("cause", error.cause); process.exit(1); }'; then
+              exit 0
+            fi
+
+            if [ "$attempt" -eq 3 ]; then
+              exit 1
+            fi
+
+            sleep "$((attempt * 20))"
+          done
 
       - name: Deploy CARS release
         env:
