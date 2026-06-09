@@ -246,8 +246,8 @@
               <input id="feedbackName" name="name" autocomplete="name" placeholder="Ada Lovelace">
             </div>
             <div class="field">
-              <label for="feedbackEmail">Email</label>
-              <input id="feedbackEmail" name="email" type="email" autocomplete="email" placeholder="ada@example.com" required>
+              <label for="feedbackEmail">Email <span>optional</span></label>
+              <input id="feedbackEmail" name="email" type="email" autocomplete="email" placeholder="ada@example.com">
             </div>
           </div>
           <div class="form-grid">
@@ -282,7 +282,7 @@
           </div>
           <label class="checkbox-field" for="newsletterSubscribe">
             <input id="newsletterSubscribe" name="newsletterSubscribe" type="checkbox" checked>
-            <span>Send me first-builder updates and follow-up questions.</span>
+            <span>Send me first-builder updates and follow-up questions if I included an email.</span>
           </label>
           <div class="feedback-actions">
             <button class="button primary" id="feedbackSubmit" type="submit">Send feedback</button>
