@@ -4,6 +4,7 @@ import { startLoopbackWallet } from "./helpers/loopback-wallet.mjs";
 
 let baseUrl = "";
 const loopback = await startLoopbackWallet();
+let serverOutput = "";
 const server = spawn(process.execPath, ["server.mjs"], {
   cwd: new URL("..", import.meta.url),
   env: {
@@ -20,14 +21,19 @@ try {
   await new Promise((resolve, reject) => {
     const timer = setTimeout(() => reject(new Error("server did not start")), 5000);
     server.stdout.on("data", (chunk) => {
-      const match = chunk.toString().match(/http:\/\/127\.0\.0\.1:(\d+)/);
+      const text = chunk.toString();
+      serverOutput += text;
+      const match = text.match(/http:\/\/127\.0\.0\.1:(\d+)/);
       if (match) {
         baseUrl = `http://127.0.0.1:${match[1]}`;
         clearTimeout(timer);
         resolve();
       }
     });
-    server.on("exit", (code) => reject(new Error(`server exited with ${code}`)));
+    server.stderr.on("data", (chunk) => {
+      serverOutput += chunk.toString();
+    });
+    server.on("exit", (code) => reject(new Error(`server exited with ${code}\n${serverOutput}`)));
   });
 
   const root = await fetch(`${baseUrl}/`);

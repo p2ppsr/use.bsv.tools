@@ -9,7 +9,7 @@
     "serve": "npx http-server frontend -p 4175 -c-1",
     "test": "npm run test:frontend && npm run test:starter",
     "test:frontend": "node ./test/frontend-smoke.mjs",
-    "test:starter": "npm --prefix starter test"
+    "test:starter": "npm --prefix starter ci && npm --prefix starter test"
   },
   "devDependencies": {
     "@p2ppsr/cars-cli": "^1.2.13",
