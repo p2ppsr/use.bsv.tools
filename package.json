@@ -1,0 +1,15 @@
+{
+  "name": "use-bsv-tools",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A fast entry point for developers who want to build useful BSV-powered apps.",
+  "scripts": {
+    "build": "cars build Babbage",
+    "deploy": "cars release now Babbage --network mainnet",
+    "serve": "npx http-server frontend -p 4175 -c-1"
+  },
+  "devDependencies": {
+    "@p2ppsr/cars-cli": "^1.2.13",
+    "http-server": "^14.1.1"
+  }
+}
