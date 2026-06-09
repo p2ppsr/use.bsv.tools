@@ -7,7 +7,8 @@ const pathData = {
       "A local UI has a prompt input and a price shown in sats.",
       "The app requests wallet permission before payment.",
       "The paid action has loading, success, and failure states.",
-      "The code has one obvious place to swap in a real model provider."
+      "The code has one obvious place to swap in a real model provider.",
+      "The UI makes it clear why payment belongs in this action instead of bolting on billing later."
     ]
   },
   "private-memory": {
@@ -18,7 +19,8 @@ const pathData = {
       "The UI can create and list private memory records.",
       "The app explains wallet permission in the UI state, not in a long README.",
       "Stored records are treated as user-owned data, not app-owned profiles.",
-      "There is a visible empty, loading, success, and error state."
+      "There is a visible empty, loading, success, and error state.",
+      "The copy explains why portable private data is better than another app-owned profile silo."
     ]
   },
   "creation-proof": {
@@ -29,10 +31,13 @@ const pathData = {
       "The UI accepts an artifact title, description, and file or URL.",
       "The app requests a wallet signature for the proof metadata.",
       "A proof page shows what was signed and who signed it.",
-      "The code leaves a clear hook for paid unlock or licensing."
+      "The code leaves a clear hook for paid unlock or licensing.",
+      "The proof has obvious value for authorship, consent, audit, or AI artifact provenance."
     ]
   }
 };
+
+const USERCOM_ENDPOINT = "https://usercom.babbage.systems/submit";
 
 const stackHints = {
   react: "Use React + TypeScript with a small Vite frontend. Keep files minimal and readable.",
@@ -51,6 +56,9 @@ const activePathLabel = document.querySelector("#activePathLabel");
 const stackSelect = document.querySelector("#stack");
 const walletSelect = document.querySelector("#wallet");
 const cards = [...document.querySelectorAll("[data-path-card]")];
+const feedbackForm = document.querySelector("#feedbackForm");
+const feedbackStatus = document.querySelector("#feedbackStatus");
+const feedbackSubmit = document.querySelector("#feedbackSubmit");
 let activePath = "paid-agent";
 
 function renderPrompt() {
@@ -67,6 +75,7 @@ What I want the first working slice to prove:
 - Start from https://github.com/p2ppsr/use.bsv.tools/tree/master/starter and keep its no-spend mode working.
 - It should run locally with the fewest possible manual edits.
 - Prefer one command or generated scaffolding over hand-written setup.
+- Keep the value visible: money, identity, private data, or proof should be part of the product behavior, not background plumbing.
 - Preserve wallet preflight plus visible empty, loading, success, and error states.
 
 Acceptance checks:
@@ -95,6 +104,88 @@ async function copyText(text, button) {
   }, 1200);
 }
 
+function setFeedbackStatus(message, state = "idle") {
+  feedbackStatus.textContent = message;
+  feedbackStatus.dataset.state = state;
+}
+
+function getFormValue(formData, key) {
+  return String(formData.get(key) || "").trim();
+}
+
+function buildFeedbackPayload(formData) {
+  const stage = getFormValue(formData, "stage");
+  const goal = getFormValue(formData, "goal");
+  const blocker = getFormValue(formData, "blocker") || "None provided";
+  const feedback = getFormValue(formData, "feedback");
+  const selectedPath = pathData[activePath].label.replace(" prompt", "");
+
+  return {
+    type: "feedback",
+    name: getFormValue(formData, "name") || undefined,
+    email: getFormValue(formData, "email"),
+    subject: `use.bsv.tools feedback: ${stage} / ${goal}`,
+    feedback: [
+      "Source: use.bsv.tools",
+      `Selected path: ${selectedPath}`,
+      `Stage: ${stage}`,
+      `Desired value: ${goal}`,
+      `Biggest blocker: ${blocker}`,
+      "",
+      feedback
+    ].join("\n"),
+    newsletterSubscribe: formData.get("newsletterSubscribe") === "on"
+  };
+}
+
+async function submitFeedback(event) {
+  event.preventDefault();
+
+  if (!feedbackForm.reportValidity()) {
+    setFeedbackStatus("Please add an email and the feedback we should act on.", "error");
+    return;
+  }
+
+  const payload = buildFeedbackPayload(new FormData(feedbackForm));
+  feedbackSubmit.disabled = true;
+  setFeedbackStatus("Sending feedback...", "sending");
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10000);
+
+  try {
+    const response = await fetch(USERCOM_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(payload),
+      signal: controller.signal
+    });
+
+    if (!response.ok) {
+      throw new Error(`Usercom returned HTTP ${response.status}`);
+    }
+
+    feedbackForm.reset();
+    document.querySelector("#builderStage").value = "Running the starter";
+    document.querySelector("#builderGoal").value = "Paid API or AI action";
+    document.querySelector("#newsletterSubscribe").checked = true;
+    setFeedbackStatus("Feedback sent. We will use this to tune the starter and docs.", "success");
+  } catch (error) {
+    const isAbort = error.name === "AbortError";
+    setFeedbackStatus(
+      isAbort
+        ? "Usercom did not respond in time. Try again or open a GitHub issue."
+        : "Feedback could not be sent. Try again or open a GitHub issue.",
+      "error"
+    );
+  } finally {
+    clearTimeout(timeout);
+    feedbackSubmit.disabled = false;
+  }
+}
+
 document.querySelectorAll("[data-path]").forEach((button) => {
   button.addEventListener("click", () => selectPath(button.dataset.path));
 });
@@ -111,4 +202,5 @@ document.querySelectorAll("[data-copy-target]").forEach((button) => {
 
 stackSelect.addEventListener("change", renderPrompt);
 walletSelect.addEventListener("change", renderPrompt);
+feedbackForm.addEventListener("submit", submitFeedback);
 renderPrompt();

@@ -23,27 +23,29 @@
         <span>use.bsv.tools</span>
       </a>
       <nav class="top-nav" aria-label="Primary navigation">
+        <a href="#why">Why BSV</a>
         <a href="#starter">Starter</a>
         <a href="#paths">Paths</a>
         <a href="#agent">AI Prompt</a>
+        <a href="#feedback">Feedback</a>
       </nav>
     </header>
 
     <main>
       <section class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">A runnable first win before the big docs.</p>
-          <h1>Use BSV tools to ship apps with money, memory, and proof built in.</h1>
-          <p class="hero-text">Clone the maintained starter, run wallet preflight, and complete paid API, private memory, and creation proof flows in no-spend mode before moving to mainnet tutorials.</p>
+          <p class="eyebrow">A builder entry point for internet-native value.</p>
+          <h1>Build apps where users bring identity, money, private data, and proof.</h1>
+          <p class="hero-text">BSV tools are worth learning when they let a developer ship something the normal web makes awkward: charge for useful work at the moment of use, keep user data portable, and prove who created or approved an action.</p>
           <div class="hero-actions" aria-label="Primary actions">
             <a class="button primary" href="#starter">Run the starter</a>
-            <a class="button secondary" href="#agent">Generate a build prompt</a>
+            <a class="button secondary" href="#feedback">Tell us what blocks you</a>
           </div>
           <div class="hero-proof" aria-label="Expected builder outcomes">
-            <span>Wallet permission flow</span>
-            <span>Paid API call</span>
-            <span>Encrypted app data</span>
-            <span>Signed artifact proof</span>
+            <span>Wallet as account</span>
+            <span>Pay per API call</span>
+            <span>User-owned memory</span>
+            <span>Signed proof</span>
           </div>
         </div>
         <div class="hero-media" aria-label="BSV tools workbench visual">
@@ -51,10 +53,40 @@
         </div>
       </section>
 
+      <section class="why-band" id="why" aria-labelledby="why-title">
+        <div class="section-heading">
+          <p class="section-kicker">Why BSV</p>
+          <h2 id="why-title">Make value a feature, not a billing project.</h2>
+          <p>Most developer platforms start with accounts, dashboards, API keys, invoices, and a pile of user data the app has to custody. BSV flips the starting point: the wallet can carry identity, permissions, payment ability, private records, and signatures into the app.</p>
+        </div>
+        <div class="value-grid">
+          <article class="value-card">
+            <span>01</span>
+            <h3>Charge for work as it happens</h3>
+            <p>Paid API calls, AI runs, file unlocks, and premium actions can settle at tiny values without forcing a subscription gate before the user gets value.</p>
+          </article>
+          <article class="value-card">
+            <span>02</span>
+            <h3>Let users own the state</h3>
+            <p>Encrypted records and wallet-mediated permissions let a useful app remember things without turning every profile into another app-owned silo.</p>
+          </article>
+          <article class="value-card">
+            <span>03</span>
+            <h3>Prove creation and consent</h3>
+            <p>Signatures and durable hashes make authorship, licensing, approval, audit trails, and AI artifact provenance visible outside one vendor database.</p>
+          </article>
+          <article class="value-card">
+            <span>04</span>
+            <h3>Compose with agents</h3>
+            <p>In 2026, the fastest developer path is an agent starting from a tested slice. This site gives the agent a working base and a narrow BSV payoff to preserve.</p>
+          </article>
+        </div>
+      </section>
+
       <section class="quick-start" id="starter" aria-labelledby="quick-start-title">
         <div>
           <p class="section-kicker">Start here</p>
-          <h2 id="quick-start-title">Run one maintained starter before touching the docs maze.</h2>
+          <h2 id="quick-start-title">Run one maintained starter before touching the deeper docs.</h2>
         </div>
         <div class="command-strip">
           <code>git clone https://github.com/p2ppsr/use.bsv.tools.git && cd use.bsv.tools/starter && npm install && npm run preflight && npm run dev</code>
@@ -66,7 +98,7 @@
         <div class="starter-copy">
           <p class="section-kicker">Verified path</p>
           <h2 id="starter-title">What the starter proves on a clean machine.</h2>
-          <p>It does not pretend that funded wallets, payment middleware, storage services, or marketplace patch instructions are already first-run safe. It gives a working no-spend milestone and tells you exactly what the real wallet state is.</p>
+          <p>It gives a working no-spend milestone and tells you exactly what the real wallet state is. A new builder should see the product value first, then upgrade one capability to a live wallet flow with eyes open.</p>
         </div>
         <div class="starter-checks">
           <div><strong>Wallet preflight</strong><span>Ports, app ownership, auth, network, and conflict guidance.</span></div>
@@ -82,6 +114,7 @@
         <div class="section-heading">
           <p class="section-kicker">After the starter</p>
           <h2 id="paths-title">Pick the payoff you want a new developer to feel.</h2>
+          <p>The first project should not be a toy counter. It should prove that BSV can make software earn, remember, or verify something useful with less platform ceremony.</p>
         </div>
 
         <div class="path-grid">
@@ -136,7 +169,7 @@
         <div class="agent-sidebar">
           <p class="section-kicker">AI-native</p>
           <h2 id="agent-title">Copy a prompt that starts from the runnable starter.</h2>
-          <p>New developers should not spend their first hour reconciling ports, package warnings, and unfinished snippets. Start from the tested starter, then ask an agent to upgrade one path.</p>
+          <p>New developers should not spend their first hour reconciling ports, package warnings, and unfinished snippets. Start from the tested starter, then ask an agent to upgrade one path while preserving the BSV value proposition.</p>
           <div class="field">
             <label for="stack">Stack</label>
             <select id="stack">
@@ -192,6 +225,71 @@
           </a>
         </div>
       </section>
+
+      <section class="feedback-section" id="feedback" aria-labelledby="feedback-title">
+        <div class="feedback-copy">
+          <p class="section-kicker">First hundred builders</p>
+          <h2 id="feedback-title">Tell us where the path loses you.</h2>
+          <p>We want the first hundred developers to shape the starter, docs, examples, and agent prompts. If setup fails, the value feels unclear, or your real use case needs a missing primitive, send the signal while it is fresh.</p>
+          <div class="feedback-prompts" aria-label="Feedback prompts">
+            <span>What are you trying to build?</span>
+            <span>Where did the starter or docs stall?</span>
+            <span>What would make you ship sooner?</span>
+          </div>
+          <a class="issue-link" href="https://github.com/p2ppsr/use.bsv.tools/issues">Prefer GitHub? Open an issue.</a>
+        </div>
+
+        <form class="feedback-form" id="feedbackForm" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="feedbackName">Name</label>
+              <input id="feedbackName" name="name" autocomplete="name" placeholder="Ada Lovelace">
+            </div>
+            <div class="field">
+              <label for="feedbackEmail">Email</label>
+              <input id="feedbackEmail" name="email" type="email" autocomplete="email" placeholder="ada@example.com" required>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="field">
+              <label for="builderStage">Where are you?</label>
+              <select id="builderStage" name="stage" required>
+                <option value="Choosing a first use case">Choosing a first use case</option>
+                <option value="Running the starter">Running the starter</option>
+                <option value="Connecting a wallet">Connecting a wallet</option>
+                <option value="Adding payments">Adding payments</option>
+                <option value="Building for users">Building for users</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="builderGoal">What value do you want?</label>
+              <select id="builderGoal" name="goal" required>
+                <option value="Paid API or AI action">Paid API or AI action</option>
+                <option value="Private user-owned data">Private user-owned data</option>
+                <option value="Signed proof or provenance">Signed proof or provenance</option>
+                <option value="Wallet login and permissions">Wallet login and permissions</option>
+                <option value="Something else">Something else</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="builderBlocker">Biggest blocker</label>
+            <input id="builderBlocker" name="blocker" placeholder="Example: wallet setup, unclear API, missing example, no use case fit">
+          </div>
+          <div class="field">
+            <label for="feedbackMessage">What should we fix or build next?</label>
+            <textarea id="feedbackMessage" name="feedback" rows="6" placeholder="Be blunt. Tell us what happened and what would make this more valuable." required></textarea>
+          </div>
+          <label class="checkbox-field" for="newsletterSubscribe">
+            <input id="newsletterSubscribe" name="newsletterSubscribe" type="checkbox" checked>
+            <span>Send me first-builder updates and follow-up questions.</span>
+          </label>
+          <div class="feedback-actions">
+            <button class="button primary" id="feedbackSubmit" type="submit">Send feedback</button>
+            <p class="feedback-status" id="feedbackStatus" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
     </main>
 
     <footer class="site-footer">
@@ -199,10 +297,11 @@
       <a href="https://docs.projectbabbage.com/docs/concepts">Concepts</a>
       <a href="https://projectbabbage.com/">Project Babbage</a>
       <a href="https://github.com/p2ppsr">GitHub</a>
+      <a href="#feedback">Feedback</a>
     </footer>
 
     <template id="starterCommand">git clone https://github.com/p2ppsr/use.bsv.tools.git && cd use.bsv.tools/starter && npm install && npm run preflight && npm run dev</template>
-    <template id="heroPrompt">Start from https://github.com/p2ppsr/use.bsv.tools/tree/master/starter. Keep the no-spend starter working, then upgrade exactly one path to real BSV wallet behavior. Preserve wallet preflight, loading/error/success states, and the smoke tests. Do not invent API methods; if a BSV API is unclear, point me to the exact docs or package source before changing code.</template>
+    <template id="heroPrompt">Start from https://github.com/p2ppsr/use.bsv.tools/tree/master/starter. Keep the no-spend starter working, then upgrade exactly one path to real BSV wallet behavior. Preserve the value proposition: wallet as account, payment at the moment of use, user-owned private data, or signed proof. Preserve wallet preflight, loading/error/success states, and the smoke tests. Do not invent API methods; if a BSV API is unclear, point me to the exact docs or package source before changing code.</template>
     <script src="/app.js" type="module"></script>
   </body>
 </html>
