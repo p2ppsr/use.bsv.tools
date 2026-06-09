@@ -49,7 +49,7 @@ async function postJson(url, body, headers = {}) {
 }
 
 $("runPreflight").addEventListener("click", async () => {
-  show("preflightOutput", "Checking local wallet ports...");
+  show("preflightOutput", "Checking local wallet ports and real BRC-100 crypto loop...");
   const response = await fetch("/api/wallet/health");
   show("preflightOutput", await response.json());
 });

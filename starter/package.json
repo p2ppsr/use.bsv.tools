@@ -7,9 +7,17 @@
   "scripts": {
     "preflight": "node ./bin/wallet-preflight.mjs",
     "dev": "node ./server.mjs",
-    "test": "node ./test/smoke.mjs"
+    "test": "npm run test:smoke && npm run test:wallet-loop",
+    "test:smoke": "node ./test/smoke.mjs",
+    "test:wallet-loop": "node ./test/wallet-loop.mjs"
+  },
+  "dependencies": {
+    "@bsv/sdk": "2.1.4"
   },
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "@bsv/sdk": "2.1.4"
   }
 }

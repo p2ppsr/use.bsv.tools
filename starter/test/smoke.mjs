@@ -24,7 +24,7 @@ try {
 
   const root = await fetch(`${baseUrl}/`);
   assert.equal(root.status, 200);
-  assert.match(await root.text(), /Run one BSV-shaped app/);
+  assert.match(await root.text(), /Run a BSV app that can prove your wallet is actually usable/);
 
   const walletHealth = await fetch(`${baseUrl}/api/wallet/health`);
   assert.equal(walletHealth.status, 200);

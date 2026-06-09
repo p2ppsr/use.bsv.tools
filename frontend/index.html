@@ -89,7 +89,7 @@
           <h2 id="quick-start-title">Run one maintained starter before touching the deeper docs.</h2>
         </div>
         <div class="command-strip">
-          <code>git clone https://github.com/p2ppsr/use.bsv.tools.git && cd use.bsv.tools/starter && npm install && npm run preflight && npm run dev</code>
+          <code id="starterCommand">git clone https://github.com/p2ppsr/use.bsv.tools.git && cd use.bsv.tools/starter && npm install && npm test && npm run preflight && npm run dev</code>
           <button class="copy-button" data-copy-target="starterCommand">Copy</button>
         </div>
       </section>
@@ -98,15 +98,15 @@
         <div class="starter-copy">
           <p class="section-kicker">Verified path</p>
           <h2 id="starter-title">What the starter proves on a clean machine.</h2>
-          <p>It gives a working no-spend milestone and tells you exactly what the real wallet state is. A new builder should see the product value first, then upgrade one capability to a live wallet flow with eyes open.</p>
+          <p>It gives a working no-spend milestone and runs a real BRC-100 wallet readiness loop. A new builder should see product value first, then know exactly whether their local wallet is ready for a live mainnet flow.</p>
         </div>
         <div class="starter-checks">
-          <div><strong>Wallet preflight</strong><span>Ports, app ownership, auth, network, and conflict guidance.</span></div>
+          <div><strong>Wallet preflight</strong><span>Ports, Origin headers, app ownership, auth, network, and conflict guidance.</span></div>
+          <div><strong>Real wallet loop</strong><span>Derived key, encrypt/decrypt, sign/verify, and identity-key readiness.</span></div>
           <div><strong>Paid API</strong><span>HTTP 402 challenge, mock payment retry, server receipt.</span></div>
           <div><strong>Private Memory</strong><span>Create, list, decrypt, and delete encrypted records.</span></div>
           <div><strong>Creation Proof</strong><span>Hash metadata, sign proof, verify signature.</span></div>
-          <div><strong>CI smoke tests</strong><span>The repo tests the runnable path before deploying the site.</span></div>
-          <div><strong>Mainnet hooks</strong><span>Clear upgrade points instead of placeholder business logic.</span></div>
+          <div><strong>CI loopback gate</strong><span>Strict BRC-100 loopback wallet powered by @bsv/sdk ProtoWallet.</span></div>
         </div>
       </section>
 
