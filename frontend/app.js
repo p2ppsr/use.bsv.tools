@@ -2,31 +2,32 @@ const pathData = {
   "paid-agent": {
     label: "Paid AI API prompt",
     goal: "a paid AI endpoint that charges a few sats before returning an expensive AI result",
-    payoff: "the developer sees wallet auth, a payment request, and a successful paid response",
+    payoff: "the builder sees wallet auth, a payment request, and a successful paid response",
     checks: [
       "A local UI has a prompt input and a price shown in sats.",
       "The app requests wallet permission before payment.",
       "The paid action has loading, success, and failure states.",
       "The code has one obvious place to swap in a real model provider.",
+      "The success state feels like a paid result, with JSON details available for inspection.",
       "The UI makes it clear why payment belongs in this action instead of bolting on billing later."
     ]
   },
   "private-memory": {
     label: "Private AI memory prompt",
     goal: "a private AI memory app where users save encrypted notes that remain tied to their wallet identity",
-    payoff: "the developer sees a private record saved, retrieved, and deleted through wallet-mediated access",
+    payoff: "the builder sees a private record saved, retrieved, and deleted through wallet-mediated access",
     checks: [
       "The UI can create and list private memory records.",
       "The app explains wallet permission in the UI state, not in a long README.",
       "Stored records are treated as user-owned data, not app-owned profiles.",
-      "There is a visible empty, loading, success, and error state.",
+      "There is a visible empty, loading, success, and error state with JSON details nearby.",
       "The copy explains why portable private data is better than another app-owned profile silo."
     ]
   },
   "creation-proof": {
     label: "Creation proof prompt",
     goal: "a creation proof app that signs metadata for an AI-generated artifact and renders a shareable proof page",
-    payoff: "the developer sees a signed proof with creator identity, timestamp, artifact metadata, and optional paid unlock",
+    payoff: "the builder sees a signed proof with creator identity, timestamp, artifact metadata, and optional paid unlock",
     checks: [
       "The UI accepts an artifact title, description, and file or URL.",
       "The app requests a wallet signature for the proof metadata.",
@@ -134,17 +135,17 @@ function renderPrompt() {
   activePathLabel.textContent = path.label;
   promptOutput.textContent = `You are helping me build ${path.goal}.
 
-Audience: a competent web developer who is new to BSV.
+Audience: a basic-technical builder who is comfortable with terminal commands and JSON, but new to BSV.
 Stack: ${stackHints[stackSelect.value]}
 Wallet/payment surface: ${walletHints[walletSelect.value]}
 
 What I want the first working slice to prove:
 - ${path.payoff}
 - Start from https://github.com/p2ppsr/use.bsv.tools/tree/master/starter and keep its real wallet flows working.
-- It should run locally with the fewest possible manual edits.
+- It should run locally with the fewest possible manual edits after Node and a BRC-100 wallet are installed.
 - Prefer one command or generated scaffolding over hand-written setup.
 - Keep the value visible: money, identity, private data, or proof should be part of the product behavior, not background plumbing.
-- Preserve wallet preflight plus visible empty, loading, success, and error states.
+- Preserve wallet preflight plus visible empty, loading, success, and error states. JSON details are okay, but the primary success state should be readable at a glance.
 
 Acceptance checks:
 ${path.checks.map((check) => `- ${check}`).join("\n")}

@@ -2,7 +2,7 @@
 
 Static landing page for `https://use.bsv.tools`.
 
-The page is designed as a builder entry point: developers choose a high-payoff BSV use case, run the maintained starter, copy an AI-agent prompt, and then use the deeper docs as reference material.
+The page is designed as a basic-technical builder entry point: builders run the maintained starter, see one wallet-backed win, choose a high-payoff BSV use case, copy an AI-agent prompt, and then use the deeper docs as reference material.
 
 The production page also includes a first-builder feedback form. It posts public feedback payloads to Usercom at `https://usercom.babbage.systems/submit` with `type: "feedback"`, optional email, structured `source` / `surface` / `tags` / `context` metadata, and an optional newsletter follow-up flag. The page also emits first-party Usercom signals for page view, path selection, prompt copy, and builder control changes.
 
@@ -16,7 +16,7 @@ npm run preflight
 npm run dev
 ```
 
-The starter uses the real BSV wallet surface: diagnostic wallet preflight, AuthFetch plus auth/payment middleware, wallet-encrypted private memory, wallet-signed creation proof, and smoke tests.
+The starter uses the real BSV wallet surface: diagnostic wallet preflight, AuthFetch plus auth/payment middleware, wallet-encrypted private memory, wallet-signed creation proof, readable success cards, JSON detail panels, and smoke tests.
 
 ## Local Development
 

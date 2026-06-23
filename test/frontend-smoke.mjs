@@ -5,7 +5,10 @@ const html = await readFile(new URL("../frontend/index.html", import.meta.url), 
 const js = await readFile(new URL("../frontend/app.js", import.meta.url), "utf8");
 
 const requiredHtml = [
-  "Build apps where users bring identity, money, private data, and proof.",
+  "Build your first wallet-powered app: charge, save, and sign.",
+  "For basic-technical builders ready to run a local starter.",
+  "Terminal commands and JSON are welcome here",
+  "Run the starter, then see the wallet do real work.",
   "Make value a feature, not a billing project.",
   "First hundred builders",
   'id="feedbackForm"',
@@ -17,10 +20,10 @@ const requiredHtml = [
   "npm run preflight && npm run dev",
   "Real wallet loop",
   "QA loopback gate",
-  "Wallet as account",
-  "Pay per API call",
-  "User-owned memory",
-  "Signed proof"
+  "Wallet ready",
+  "3-sat paid API",
+  "Encrypted memory",
+  "Verified signature"
 ];
 
 for (const value of requiredHtml) {
@@ -37,6 +40,7 @@ const requiredJs = [
   'surface: "first-builder-feedback"',
   'postSignal("page.view"',
   "submitFeedback",
+  "basic-technical builder",
   "Keep the value visible"
 ];
 

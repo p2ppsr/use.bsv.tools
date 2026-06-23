@@ -38,7 +38,10 @@ try {
 
   const root = await fetch(`${baseUrl}/`);
   assert.equal(root.status, 200);
-  assert.match(await root.text(), /Run a BSV app that uses your wallet for real/);
+  const rootHtml = await root.text();
+  assert.match(rootHtml, /Run a BSV app that charges, saves, and signs/);
+  assert.match(rootHtml, /Starter wins/);
+  assert.match(rootHtml, /JSON details/);
 
   const walletHealth = await fetch(`${baseUrl}/api/wallet/health`);
   assert.equal(walletHealth.status, 200);

@@ -10,17 +10,59 @@
     <main class="shell">
       <section class="hero">
         <p class="kicker">Real wallet loop first</p>
-        <h1>Run a BSV app that uses your wallet for real.</h1>
-        <p>This starter calls a local BRC-100 wallet for paid requests, private data, and signed proof. If permission is needed, the wallet prompts and the request waits for the user.</p>
+        <h1>Run a BSV app that charges, saves, and signs.</h1>
+        <p>This starter calls a local BRC-100 wallet for paid requests, private data, and signed proof. Terminal output and JSON are part of the evidence, but each successful action should also feel like a clear first win.</p>
         <div class="actions">
           <button id="runPreflight">Run wallet preflight</button>
           <a href="https://use.bsv.tools/">Back to use.bsv.tools</a>
         </div>
       </section>
 
+      <section class="win-board" aria-label="Starter wins">
+        <div class="win-card" id="walletWin" data-state="idle">
+          <span>Wallet</span>
+          <strong>Check readiness</strong>
+          <p>Run preflight to confirm wallet API, auth, mainnet, crypto loop, and identity key.</p>
+        </div>
+        <div class="win-card" id="paidWin" data-state="idle">
+          <span>Paid API</span>
+          <strong>Charge a few sats</strong>
+          <p>Run the paid request to see AuthFetch and payment middleware return a receipt.</p>
+        </div>
+        <div class="win-card" id="memoryWin" data-state="idle">
+          <span>Memory</span>
+          <strong>Save encrypted state</strong>
+          <p>Store ciphertext server-side and prove the wallet can decrypt the note.</p>
+        </div>
+        <div class="win-card" id="proofWin" data-state="idle">
+          <span>Proof</span>
+          <strong>Verify a signature</strong>
+          <p>Sign artifact metadata and verify it with the wallet-derived key.</p>
+        </div>
+      </section>
+
+      <section class="help-panel" aria-labelledby="help-title">
+        <div>
+          <p class="kicker">Before you click</p>
+          <h2 id="help-title">What to check if the wallet waits.</h2>
+        </div>
+        <ul>
+          <li>Open Metanet Client or another BRC-100 wallet before running actions.</li>
+          <li>If a permission or payment window appears, approve or deny it there.</li>
+          <li>The paid API needs a few spendable sats available for fees and the 3-sat payment.</li>
+          <li>If preflight finds the wrong app on port 3321, quit the extra wallet app and retry.</li>
+        </ul>
+      </section>
+
       <section class="status-panel">
         <h2>Wallet readiness</h2>
-        <pre id="preflightOutput">Run the preflight to see wallet ports, auth state, network, real crypto loop status, and production blockers.</pre>
+        <div class="result-summary" id="preflightSummary" data-state="idle">
+          Run the preflight to see wallet ports, auth state, network, real crypto loop status, and production blockers.
+        </div>
+        <details open>
+          <summary>JSON details</summary>
+          <pre id="preflightOutput"></pre>
+        </details>
       </section>
 
       <section class="grid">
@@ -31,7 +73,11 @@
           <label for="paidPrompt">Prompt</label>
           <textarea id="paidPrompt">Summarize why tiny payments are useful for AI APIs.</textarea>
           <button id="runPaid">Run paid request</button>
-          <pre id="paidOutput"></pre>
+          <div class="result-summary" id="paidSummary" data-state="idle">Waiting for a paid request.</div>
+          <details>
+            <summary>JSON details</summary>
+            <pre id="paidOutput"></pre>
+          </details>
         </article>
 
         <article>
@@ -42,7 +88,11 @@
           <textarea id="memoryText">My first BSV app should show useful state before advanced concepts.</textarea>
           <button id="saveMemory">Encrypt and save</button>
           <button id="deleteMemory">Delete records</button>
-          <pre id="memoryOutput"></pre>
+          <div class="result-summary" id="memorySummary" data-state="idle">Waiting for an encrypted note.</div>
+          <details>
+            <summary>JSON details</summary>
+            <pre id="memoryOutput"></pre>
+          </details>
         </article>
 
         <article>
@@ -54,7 +104,11 @@
           <label for="proofBody">Artifact body</label>
           <textarea id="proofBody">I generated a working local BSV starter flow.</textarea>
           <button id="makeProof">Sign and verify</button>
-          <pre id="proofOutput"></pre>
+          <div class="result-summary" id="proofSummary" data-state="idle">Waiting for a signed proof.</div>
+          <details>
+            <summary>JSON details</summary>
+            <pre id="proofOutput"></pre>
+          </details>
         </article>
       </section>
     </main>

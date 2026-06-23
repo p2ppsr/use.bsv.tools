@@ -243,6 +243,10 @@ h3 {
   padding: 40px 32px 76px;
 }
 
+.quick-start .section-heading {
+  margin-bottom: 0;
+}
+
 .why-band {
   padding: 46px 32px 58px;
 }
@@ -340,6 +344,30 @@ h3 {
   background: #0a1714;
 }
 
+.starter-runbook {
+  display: grid;
+  gap: 12px;
+}
+
+.runbook-step {
+  display: grid;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: #0c1916;
+}
+
+.runbook-step strong {
+  color: #f6f2df;
+  font-size: 16px;
+}
+
+.runbook-step span {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
 code {
   min-width: 0;
   overflow-wrap: anywhere;
@@ -402,6 +430,12 @@ code {
   margin-bottom: 24px;
   color: var(--muted);
   font-size: 13px;
+}
+
+.path-time {
+  max-width: 150px;
+  text-align: right;
+  line-height: 1.25;
 }
 
 .path-number {

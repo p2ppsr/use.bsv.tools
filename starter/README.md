@@ -2,7 +2,7 @@
 
 This is the maintained first-run path behind `use.bsv.tools`.
 
-It gives a new developer one concrete win before asking them to understand Overlay, UHRP, CARS, or marketplace architecture. The starter now uses a real local BRC-100 wallet for paid requests, private data, and signed proof.
+It gives a basic-technical builder one concrete win before asking them to understand Overlay, UHRP, CARS, or marketplace architecture. The starter now uses a real local BRC-100 wallet for paid requests, private data, and signed proof.
 
 ## Run It
 
@@ -22,6 +22,7 @@ Then open `http://127.0.0.1:7171`.
 - Paid API path uses `AuthFetch`, `@bsv/auth-express-middleware`, and `@bsv/payment-express-middleware`.
 - Private Memory path asks the wallet to encrypt/decrypt records and stores only ciphertext server-side.
 - Creation Proof path asks the wallet to sign artifact metadata and verify the signature.
+- The UI keeps JSON details visible, but each path also has a readable success state: wallet ready, sats charged, encrypted memory saved, or signature verified.
 
 ## Wallet Behavior
 

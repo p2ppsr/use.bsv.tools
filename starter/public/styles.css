@@ -64,6 +64,70 @@ p {
   margin-top: 24px;
 }
 
+.win-board {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.win-card {
+  display: grid;
+  gap: 8px;
+  min-height: 160px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  background: #101d19;
+}
+
+.win-card[data-state="loading"] {
+  border-color: rgba(94, 216, 255, 0.58);
+}
+
+.win-card[data-state="success"] {
+  border-color: rgba(87, 242, 135, 0.68);
+  background: #10271d;
+}
+
+.win-card[data-state="error"] {
+  border-color: rgba(255, 155, 139, 0.78);
+}
+
+.win-card strong {
+  font-size: 18px;
+}
+
+.win-card p {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.help-panel {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.6fr) minmax(300px, 1fr);
+  gap: 18px;
+  align-items: start;
+  margin-bottom: 18px;
+  border: 1px solid rgba(94, 216, 255, 0.24);
+  border-radius: 8px;
+  padding: 20px;
+  background: #0c1916;
+}
+
+.help-panel h2 {
+  margin-bottom: 0;
+}
+
+.help-panel ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 20px;
+  color: #dfe9e3;
+  line-height: 1.48;
+}
+
 button,
 a {
   min-height: 42px;
@@ -98,6 +162,32 @@ article {
 .status-panel {
   margin-bottom: 18px;
   padding: 20px;
+}
+
+.result-summary {
+  min-height: 72px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin-bottom: 12px;
+  padding: 14px;
+  background: #07130f;
+  color: var(--muted);
+  line-height: 1.48;
+}
+
+.result-summary[data-state="loading"] {
+  border-color: rgba(94, 216, 255, 0.58);
+  color: #dff4ff;
+}
+
+.result-summary[data-state="success"] {
+  border-color: rgba(87, 242, 135, 0.68);
+  color: #dff8e5;
+}
+
+.result-summary[data-state="error"] {
+  border-color: rgba(255, 155, 139, 0.78);
+  color: #ffd0c8;
 }
 
 .grid {
@@ -151,8 +241,22 @@ pre {
   white-space: pre-wrap;
 }
 
+details {
+  display: grid;
+  gap: 10px;
+}
+
+summary {
+  min-height: 34px;
+  color: var(--cyan);
+  font-weight: 800;
+  cursor: pointer;
+}
+
 @media (max-width: 900px) {
-  .grid {
+  .grid,
+  .win-board,
+  .help-panel {
     grid-template-columns: 1fr;
   }
 
