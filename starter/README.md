@@ -2,7 +2,7 @@
 
 This is the maintained first-run path behind `use.bsv.tools`.
 
-It gives a basic-technical builder one concrete win before asking them to understand Overlay, UHRP, CARS, or marketplace architecture. The starter now uses a real local BRC-100 wallet for paid requests, private data, and signed proof.
+It gives a developer one concrete win before asking them to understand Overlay, UHRP, CARS, or marketplace architecture. The starter now uses a real local BRC-100 wallet for paid requests, private data, and signed proof.
 
 ## Run It
 

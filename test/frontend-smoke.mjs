@@ -5,10 +5,12 @@ const html = await readFile(new URL("../frontend/index.html", import.meta.url), 
 const js = await readFile(new URL("../frontend/app.js", import.meta.url), "utf8");
 
 const requiredHtml = [
-  "Build your first wallet-powered app: charge, save, and sign.",
-  "For basic-technical builders ready to run a local starter.",
-  "Terminal commands and JSON are welcome here",
+  "Use BSV tools to ship apps with money, memory, and proof built in.",
+  "Three useful BSV app patterns. One builder entry point.",
+  "without starting from a blank file",
   "Run the starter, then see the wallet do real work.",
+  "A real wallet-backed first win.",
+  "Choose what your first app should prove.",
   "Make value a feature, not a billing project.",
   "First hundred builders",
   'id="feedbackForm"',
@@ -40,7 +42,7 @@ const requiredJs = [
   'surface: "first-builder-feedback"',
   'postSignal("page.view"',
   "submitFeedback",
-  "basic-technical builder",
+  "practical web developer",
   "Keep the value visible"
 ];
 

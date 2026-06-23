@@ -8,7 +8,7 @@ const pathData = {
       "The app requests wallet permission before payment.",
       "The paid action has loading, success, and failure states.",
       "The code has one obvious place to swap in a real model provider.",
-      "The success state feels like a paid result, with JSON details available for inspection.",
+      "The success state reads like a paid result, with JSON details available for inspection.",
       "The UI makes it clear why payment belongs in this action instead of bolting on billing later."
     ]
   },
@@ -20,7 +20,7 @@ const pathData = {
       "The UI can create and list private memory records.",
       "The app explains wallet permission in the UI state, not in a long README.",
       "Stored records are treated as user-owned data, not app-owned profiles.",
-      "There is a visible empty, loading, success, and error state with JSON details nearby.",
+      "There is a visible empty, loading, success, and error state, with JSON details nearby when useful.",
       "The copy explains why portable private data is better than another app-owned profile silo."
     ]
   },
@@ -135,7 +135,7 @@ function renderPrompt() {
   activePathLabel.textContent = path.label;
   promptOutput.textContent = `You are helping me build ${path.goal}.
 
-Audience: a basic-technical builder who is comfortable with terminal commands and JSON, but new to BSV.
+Audience: a practical web developer who can run local commands, but is new to BSV.
 Stack: ${stackHints[stackSelect.value]}
 Wallet/payment surface: ${walletHints[walletSelect.value]}
 
