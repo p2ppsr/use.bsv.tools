@@ -213,6 +213,20 @@ h3 {
   min-width: 190px;
 }
 
+.copy-fallback {
+  width: min(620px, 100%);
+  min-height: 132px;
+  margin-top: 14px;
+  border: 1px solid rgba(110, 229, 139, 0.42);
+  border-radius: 8px;
+  padding: 12px;
+  background: #0b0b09;
+  color: #f5eddc;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
 .hero-outcomes {
   display: flex;
   flex-wrap: wrap;

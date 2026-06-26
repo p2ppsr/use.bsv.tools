@@ -209,7 +209,8 @@ async function copyText(text, button) {
     button.textContent = "Copied";
     copied = true;
   } catch {
-    button.textContent = "Copy unavailable";
+    showCopyFallback(text, button);
+    button.textContent = "Press Cmd+C";
   } finally {
     button.disabled = true;
     setTimeout(() => {
@@ -218,6 +219,19 @@ async function copyText(text, button) {
     }, 1200);
   }
   return copied;
+}
+
+function showCopyFallback(text, button) {
+  const container = button.closest(".prompt-box") || button.closest(".hero-copy") || button.parentElement;
+  const existing = container.querySelector(".copy-fallback");
+  const fallback = existing || document.createElement("textarea");
+  fallback.className = "copy-fallback";
+  fallback.setAttribute("readonly", "");
+  fallback.setAttribute("aria-label", "Selected LLM reference");
+  fallback.value = text;
+  if (!existing) container.append(fallback);
+  fallback.focus();
+  fallback.select();
 }
 
 function copyTargetText(target) {

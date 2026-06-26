@@ -60,6 +60,8 @@ const requiredJs = [
   '"builder.llm_reference_copied"',
   '"builder.starter_clicked"',
   "submitFeedback",
+  "Press Cmd+C",
+  "showCopyFallback",
   "AI-assisted founder or product builder",
   "Keep the value visible"
 ];
@@ -108,6 +110,12 @@ assert.doesNotMatch(
   html,
   /class="audience-grid"/,
   "passive audience labels should not use the old card grid"
+);
+
+assert.doesNotMatch(
+  js,
+  /Copy unavailable/,
+  "clipboard fallback should offer manual copy instead of a dead unavailable state"
 );
 
 console.log("Frontend smoke checks passed.");
