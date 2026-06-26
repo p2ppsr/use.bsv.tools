@@ -203,7 +203,6 @@ async function writeClipboard(text) {
 
 async function copyText(text, button) {
   const original = button.textContent;
-  button.disabled = true;
   let copied = false;
   try {
     await writeClipboard(text);
@@ -212,6 +211,7 @@ async function copyText(text, button) {
   } catch {
     button.textContent = "Copy unavailable";
   } finally {
+    button.disabled = true;
     setTimeout(() => {
       button.textContent = original;
       button.disabled = false;
