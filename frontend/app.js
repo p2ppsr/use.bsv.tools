@@ -1,8 +1,8 @@
 const pathData = {
   "paid-agent": {
-    label: "Paid AI API prompt",
-    goal: "a paid AI endpoint that charges a few sats before returning an expensive AI result",
-    payoff: "the builder sees wallet auth, a payment request, and a successful paid response",
+    label: "Paid AI action reference",
+    goal: "a paid AI action that charges a few sats only when it delivers a useful result",
+    payoff: "the builder sees a wallet permission, a tiny payment request, and a successful paid response",
     checks: [
       "A local UI has a prompt input and a price shown in sats.",
       "The app requests wallet permission before payment.",
@@ -13,8 +13,8 @@ const pathData = {
     ]
   },
   "private-memory": {
-    label: "Private AI memory prompt",
-    goal: "a private AI memory app where users save encrypted notes that remain tied to their wallet identity",
+    label: "Private customer memory reference",
+    goal: "a private customer memory app where users save encrypted notes that remain tied to their wallet identity",
     payoff: "the builder sees a private record saved, retrieved, and deleted through wallet-mediated access",
     checks: [
       "The UI can create and list private memory records.",
@@ -25,7 +25,7 @@ const pathData = {
     ]
   },
   "creation-proof": {
-    label: "Creation proof prompt",
+    label: "Signed creation proof reference",
     goal: "a creation proof app that signs metadata for an AI-generated artifact and renders a shareable proof page",
     payoff: "the builder sees a signed proof with creator identity, timestamp, artifact metadata, and optional paid unlock",
     checks: [
@@ -64,6 +64,7 @@ const feedbackForm = document.querySelector("#feedbackForm");
 const feedbackStatus = document.querySelector("#feedbackStatus");
 const feedbackSubmit = document.querySelector("#feedbackSubmit");
 let activePath = "paid-agent";
+let feedbackStarted = false;
 
 function randomId() {
   if (window.crypto?.randomUUID) return window.crypto.randomUUID();
@@ -135,7 +136,7 @@ function renderPrompt() {
   activePathLabel.textContent = path.label;
   promptOutput.textContent = `You are helping me build ${path.goal}.
 
-Audience: a practical web developer who can run local commands, but is new to BSV.
+Audience: an AI-assisted founder or product builder who can use a coding agent and run guided local commands, but is new to BSV.
 Stack: ${stackHints[stackSelect.value]}
 Wallet/payment surface: ${walletHints[walletSelect.value]}
 
@@ -170,8 +171,29 @@ function selectPath(pathKey) {
   }));
 }
 
+async function writeClipboard(text) {
+  const textArea = document.createElement("textarea");
+  textArea.value = text;
+  textArea.setAttribute("readonly", "");
+  textArea.style.position = "fixed";
+  textArea.style.inset = "0 auto auto 0";
+  textArea.style.opacity = "0";
+  document.body.append(textArea);
+  textArea.select();
+  const copied = document.execCommand("copy");
+  textArea.remove();
+  if (copied) return;
+
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+
+  throw new Error("Clipboard copy failed");
+}
+
 async function copyText(text, button) {
-  await navigator.clipboard.writeText(text);
+  await writeClipboard(text);
   const original = button.textContent;
   button.textContent = "Copied";
   button.disabled = true;
@@ -179,6 +201,21 @@ async function copyText(text, button) {
     button.textContent = original;
     button.disabled = false;
   }, 1200);
+}
+
+function copyTargetText(target) {
+  if (target === "promptOutput") return promptOutput.textContent;
+
+  const element = document.querySelector(`#${target}`);
+  if (!element) return "";
+  if (element instanceof HTMLTemplateElement) return element.innerHTML.trim();
+  return element.textContent.trim();
+}
+
+function signalForCopyTarget(target) {
+  if (target === "heroPrompt" || target === "promptOutput") return "builder.llm_reference_copied";
+  if (target === "starterCommand") return "builder.starter_clicked";
+  return "builder.copy_clicked";
 }
 
 function setFeedbackStatus(message, state = "idle") {
@@ -281,14 +318,41 @@ document.querySelectorAll("[data-path]").forEach((button) => {
   button.addEventListener("click", () => selectPath(button.dataset.path));
 });
 
+document.querySelectorAll("[data-example]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const pathKey = button.dataset.example;
+    selectPath(pathKey);
+    postSignal("builder.example_viewed", usercomMetadata({
+      surface: "example-catalog",
+      tags: [`path:${pathKey}`],
+      context: {
+        pathKey,
+        label: pathData[pathKey].label
+      }
+    }));
+    document.querySelector("#agent").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
+
+document.querySelectorAll("[data-starter-action]").forEach((link) => {
+  link.addEventListener("click", () => {
+    postSignal("builder.starter_clicked", usercomMetadata({
+      surface: "hero",
+      tags: [`action:${tagValue(link.dataset.starterAction)}`],
+      context: {
+        activePath,
+        action: link.dataset.starterAction
+      }
+    }));
+  });
+});
+
 document.querySelectorAll("[data-copy-target]").forEach((button) => {
   button.addEventListener("click", async () => {
     const target = button.dataset.copyTarget;
-    const text = target === "promptOutput"
-      ? promptOutput.textContent
-      : document.querySelector(`#${target}`).innerHTML.trim();
+    const text = copyTargetText(target);
     await copyText(text, button);
-    postSignal("builder.copy_clicked", usercomMetadata({
+    postSignal(signalForCopyTarget(target), usercomMetadata({
       surface: "copy-control",
       tags: [`copy:${target}`],
       context: {
@@ -318,6 +382,19 @@ walletSelect.addEventListener("change", () => {
   }));
 });
 feedbackForm.addEventListener("submit", submitFeedback);
+feedbackForm.addEventListener("focusin", () => {
+  if (feedbackStarted) return;
+  feedbackStarted = true;
+  postSignal("builder.feedback_started", usercomMetadata({
+    surface: "first-builder-feedback",
+    tags: ["intent:first-builder-feedback"],
+    context: {
+      activePath,
+      stack: stackSelect.value,
+      walletSurface: walletSelect.value
+    }
+  }));
+});
 renderPrompt();
 postSignal("page.view", usercomMetadata({
   surface: "home",

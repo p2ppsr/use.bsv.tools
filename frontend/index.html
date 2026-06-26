@@ -3,17 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Use BSV Tools | Build With Wallets, Payments, Private Data, and Proof</title>
-    <meta name="description" content="A practical starting point for developers using BSV tools: wallet auth, micropayments, private user-owned data, and proof of creation with AI-agent-ready prompts.">
+    <title>Use BSV Tools | Add Wallets, Payments, Private Data, and Proof With AI</title>
+    <meta name="description" content="An AI-ready starter for founders and product builders who want wallet login, tiny payments, private user data, or proof in a real app.">
     <meta property="og:title" content="Use BSV Tools">
-    <meta property="og:description" content="Pick a useful BSV app pattern, copy the AI-agent prompt, and start building with wallet auth, payments, private data, and proof.">
+    <meta property="og:description" content="Copy one LLM reference, start from a maintained BSV starter, and add money, memory, or proof to a real app.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://use.bsv.tools/">
-    <meta property="og:image" content="https://use.bsv.tools/assets/bsv-tools-workbench.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="theme-color" content="#07110f">
+    <meta name="theme-color" content="#f7f3ea">
     <link rel="canonical" href="https://use.bsv.tools/">
-    <link rel="preload" href="/assets/bsv-tools-workbench.png" as="image">
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
@@ -23,10 +21,10 @@
         <span>use.bsv.tools</span>
       </a>
       <nav class="top-nav" aria-label="Primary navigation">
+        <a href="#examples">Examples</a>
+        <a href="#agent">LLM Reference</a>
         <a href="#starter">Starter</a>
         <a href="#paths">Paths</a>
-        <a href="#agent">AI Prompt</a>
-        <a href="#why">Why BSV</a>
         <a href="#feedback">Feedback</a>
       </nav>
     </header>
@@ -34,29 +32,162 @@
     <main>
       <section class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">Three useful BSV app patterns. One builder entry point.</p>
-          <h1>Use BSV tools to ship apps with money, memory, and proof built in.</h1>
-          <p class="hero-text">Run one maintained starter, copy a focused agent prompt, and give your app wallet auth, tiny payments, private user-owned storage, or signed proof without starting from a blank file.</p>
+          <p class="eyebrow">For AI-assisted founders and product builders</p>
+          <h1>Add wallet login, tiny payments, private user data, or proof to your app with one AI-ready starter.</h1>
+          <p class="hero-text">Copy the reference into your coding agent, pick one useful app pattern, and start from a maintained BSV starter instead of explaining blockchain plumbing from scratch.</p>
           <div class="hero-actions" aria-label="Primary actions">
-            <a class="button primary" href="#starter">Run the starter</a>
-            <a class="button secondary" href="#agent">Copy the next-step prompt</a>
+            <button class="button primary hero-copy-button" data-copy-target="heroPrompt" type="button">Copy LLM reference</button>
+            <a class="button secondary" href="#starter" data-starter-action="hero">Run starter</a>
+            <a class="button text-link" href="#feedback">Tell us what to fix</a>
           </div>
           <div class="hero-proof" aria-label="Expected builder outcomes">
-            <span>Wallet ready</span>
-            <span>3-sat paid API</span>
-            <span>Encrypted memory</span>
-            <span>Verified signature</span>
+            <span>No signup screen first</span>
+            <span>Charge per use</span>
+            <span>User-held private data</span>
+            <span>Proof outside your database</span>
           </div>
         </div>
-        <div class="hero-media" aria-label="BSV tools workbench visual">
-          <img src="/assets/bsv-tools-workbench.png" alt="Developer workbench showing BSV payment, private memory, and proof modules connected to an AI coding surface.">
+        <div class="hero-media" aria-label="Example app previews">
+          <article class="mini-app-card paid">
+            <div class="mini-app-top">
+              <span>Paid AI action</span>
+              <strong>3 sats</strong>
+            </div>
+            <div class="mini-app-body">
+              <p>Summarize customer brief</p>
+              <div class="mock-input"></div>
+              <button type="button">Unlock result</button>
+            </div>
+            <small>Payment happens when value is delivered.</small>
+          </article>
+          <article class="mini-app-card memory">
+            <div class="mini-app-top">
+              <span>Private customer memory</span>
+              <strong>Encrypted</strong>
+            </div>
+            <div class="mock-list">
+              <span>brand-voice.note</span>
+              <span>buyer-profile.note</span>
+              <span>launch-plan.note</span>
+            </div>
+            <small>The app remembers without owning the profile.</small>
+          </article>
+          <article class="mini-app-card proof">
+            <div class="mini-app-top">
+              <span>Signed creation proof</span>
+              <strong>Verified</strong>
+            </div>
+            <div class="proof-stamp">
+              <span>Created by wallet</span>
+              <b>9f8e2d...b7a1c3</b>
+            </div>
+            <small>Authorship can travel outside one app.</small>
+          </article>
+        </div>
+      </section>
+
+      <section class="audience-band" aria-labelledby="audience-title">
+        <div>
+          <p class="section-kicker">Who this is for</p>
+          <h2 id="audience-title">People who know the product, not necessarily the protocol.</h2>
+        </div>
+        <div class="audience-grid">
+          <span>AI-assisted founders</span>
+          <span>Product designers</span>
+          <span>Technical operators</span>
+          <span>Developers validating a BSV use case</span>
+        </div>
+      </section>
+
+      <section class="examples-section" id="examples" aria-labelledby="examples-title">
+        <div class="section-heading">
+          <p class="section-kicker">Proof before plumbing</p>
+          <h2 id="examples-title">Start with a product moment people can understand.</h2>
+          <p>Each example keeps the BSV value visible in the app: the user pays at the moment of value, carries private state through a wallet, or gets a proof that does not depend on your database.</p>
+        </div>
+        <div class="example-grid">
+          <article class="example-card">
+            <div class="example-shot paid-shot">
+              <span>Premium answer</span>
+              <strong>Pay 3 sats to run</strong>
+              <em>Result unlocked</em>
+            </div>
+            <h3>Paid AI action</h3>
+            <p><strong>What they built:</strong> A lead-research or content action that charges only when the expensive result runs.</p>
+            <p><strong>Why BSV mattered:</strong> Tiny payment before work, without forcing a subscription first.</p>
+            <button class="select-path" data-example="paid-agent" type="button">Use this reference</button>
+          </article>
+          <article class="example-card">
+            <div class="example-shot memory-shot">
+              <span>Customer memory</span>
+              <strong>3 private notes</strong>
+              <em>Wallet can decrypt</em>
+            </div>
+            <h3>Private customer memory</h3>
+            <p><strong>What they built:</strong> An assistant that remembers preferences without turning them into app-owned profile data.</p>
+            <p><strong>Why BSV mattered:</strong> Private records stay tied to the user's wallet permissions.</p>
+            <button class="select-path" data-example="private-memory" type="button">Use this reference</button>
+          </article>
+          <article class="example-card">
+            <div class="example-shot proof-shot">
+              <span>Launch asset</span>
+              <strong>Signed by creator</strong>
+              <em>Proof page ready</em>
+            </div>
+            <h3>Signed creation proof</h3>
+            <p><strong>What they built:</strong> A shareable proof page for a design, AI artifact, license, or approval.</p>
+            <p><strong>Why BSV mattered:</strong> Authorship and consent remain verifiable outside the original app.</p>
+            <button class="select-path" data-example="creation-proof" type="button">Use this reference</button>
+          </article>
+        </div>
+        <div class="testimonial-grid" aria-label="Customer proof slots">
+          <article>
+            <span>Builder proof slot</span>
+            <p>Use this for the first founder who copies the reference, ships a slice, and can say what changed.</p>
+          </article>
+          <article>
+            <span>App catalog slot</span>
+            <p>Use this for a real deployed app screenshot once the starter produces repeatable public examples.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="agent-panel" id="agent" aria-labelledby="agent-title">
+        <div class="agent-sidebar">
+          <p class="section-kicker">LLM reference</p>
+          <h2 id="agent-title">Give your coding agent the right starting point.</h2>
+          <p>Choose the closest product moment, copy the reference, and ask for one working slice. The prompt keeps the wallet behavior real while translating BSV into app outcomes.</p>
+          <div class="field">
+            <label for="stack">Stack</label>
+            <select id="stack">
+              <option value="react">React + TypeScript</option>
+              <option value="next">Next.js API route</option>
+              <option value="node">Node service + simple UI</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="wallet">Wallet surface</label>
+            <select id="wallet">
+              <option value="browser">Browser wallet permissions</option>
+              <option value="server">Server-side payment check</option>
+              <option value="hybrid">Hybrid browser + server</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-toolbar">
+            <span id="activePathLabel">Paid AI API prompt</span>
+            <button class="copy-button" data-copy-target="promptOutput">Copy LLM reference</button>
+          </div>
+          <pre id="promptOutput" tabindex="0"></pre>
         </div>
       </section>
 
       <section class="quick-start" id="starter" aria-labelledby="quick-start-title">
         <div class="section-heading">
           <p class="section-kicker">Start here</p>
-          <h2 id="quick-start-title">Run the starter, then see the wallet do real work.</h2>
+          <h2 id="quick-start-title">Run the starter when you are ready to touch the real wallet flow.</h2>
           <p>Start with Node and a local BRC-100 wallet. The starter checks wallet access, then walks through payment, encrypted memory, and signature proof in one small app.</p>
         </div>
         <div class="starter-runbook" aria-label="Starter readiness checklist">
@@ -98,7 +229,7 @@
       <section class="paths" id="paths" aria-labelledby="paths-title">
         <div class="section-heading">
           <p class="section-kicker">After the starter</p>
-          <h2 id="paths-title">Choose what your first app should prove.</h2>
+          <h2 id="paths-title">Choose the first BSV-powered behavior your app should prove.</h2>
           <p>Start with one useful behavior: software that earns, remembers, or verifies something without bolting on accounts, billing, or proof after the fact.</p>
         </div>
 
@@ -177,38 +308,6 @@
             <h3>Compose with agents</h3>
             <p>Start from a working slice, then ask an agent to extend one useful path while preserving wallet auth, payment, private data, or proof.</p>
           </article>
-        </div>
-      </section>
-
-      <section class="agent-panel" id="agent" aria-labelledby="agent-title">
-        <div class="agent-sidebar">
-          <p class="section-kicker">AI-native</p>
-          <h2 id="agent-title">Copy a prompt that starts from the runnable starter.</h2>
-          <p>After the starter works, ask an agent to upgrade one path without breaking the real wallet behavior. Keep the first milestone small enough that the BSV-specific payoff stays visible.</p>
-          <div class="field">
-            <label for="stack">Stack</label>
-            <select id="stack">
-              <option value="react">React + TypeScript</option>
-              <option value="next">Next.js API route</option>
-              <option value="node">Node service + simple UI</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="wallet">Wallet surface</label>
-            <select id="wallet">
-              <option value="browser">Browser wallet permissions</option>
-              <option value="server">Server-side payment check</option>
-              <option value="hybrid">Hybrid browser + server</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="prompt-box">
-          <div class="prompt-toolbar">
-            <span id="activePathLabel">Paid AI API prompt</span>
-            <button class="copy-button" data-copy-target="promptOutput">Copy prompt</button>
-          </div>
-          <pre id="promptOutput" tabindex="0"></pre>
         </div>
       </section>
 
@@ -316,7 +415,22 @@
     </footer>
 
     <template id="starterCommandTemplate">git clone https://github.com/p2ppsr/use.bsv.tools.git && cd use.bsv.tools/starter && npm install && npm run preflight && npm run dev</template>
-    <template id="heroPrompt">Start from https://github.com/p2ppsr/use.bsv.tools/tree/master/starter. Keep the real wallet behavior working, then extend exactly one path into a product slice. Preserve the value proposition: wallet as account, payment at the moment of use, user-owned private data, or signed proof. Preserve wallet preflight, loading/error/success states, and the smoke tests. Do not invent API methods; if a BSV API is unclear, point me to the exact docs or package source before changing code.</template>
+    <template id="heroPrompt">I want to add one BSV-powered product moment to an app for normal users.
+
+Use https://github.com/p2ppsr/use.bsv.tools/tree/master/starter as the starting point. Keep the real wallet behavior working, then build exactly one useful slice:
+- wallet login instead of another account screen,
+- a tiny payment at the moment value is delivered,
+- private user data the app does not own, or
+- a signed proof users can verify outside my database.
+
+Audience: an AI-assisted founder or product builder. Explain product value in plain language first, then show the technical details.
+
+Acceptance checks:
+- The app runs locally after Node and a BRC-100 wallet are installed.
+- The first success state is readable without opening raw JSON.
+- Wallet preflight, loading, success, and error states remain visible.
+- npm --prefix starter test still passes.
+- Do not invent BSV API method names. If an API is unclear, point me to the exact docs or package source before coding.</template>
     <script src="/app.js" type="module"></script>
   </body>
 </html>

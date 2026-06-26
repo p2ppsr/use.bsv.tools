@@ -2,9 +2,9 @@
 
 Static landing page for `https://use.bsv.tools`.
 
-The page is designed as a developer entry point: builders run the maintained starter, see one wallet-backed win, choose a useful BSV app pattern, copy an AI-agent prompt, and then use the deeper docs as reference material.
+The page is designed as a product-builder entry point: AI-assisted founders and practical builders copy an LLM reference, see concrete app examples, run the maintained starter, choose a useful BSV app pattern, and then use the deeper docs as reference material.
 
-The production page also includes a first-builder feedback form. It posts public feedback payloads to Usercom at `https://usercom.babbage.systems/submit` with `type: "feedback"`, optional email, structured `source` / `surface` / `tags` / `context` metadata, and an optional newsletter follow-up flag. The page also emits first-party Usercom signals for page view, path selection, prompt copy, and builder control changes.
+The production page also includes a first-builder feedback form. It posts public feedback payloads to Usercom at `https://usercom.babbage.systems/submit` with `type: "feedback"`, optional email, structured `source` / `surface` / `tags` / `context` metadata, and an optional newsletter follow-up flag. The page also emits first-party Usercom signals for page view, LLM-reference copy, starter clicks, example views, path selection, feedback start, and builder control changes.
 
 ## First-Run Starter
 
