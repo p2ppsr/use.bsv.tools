@@ -172,6 +172,20 @@ function selectPath(pathKey) {
 }
 
 async function writeClipboard(text) {
+  let clipboardError;
+  if (location.protocol === "https:" && navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch (error) {
+      clipboardError = error;
+    }
+  }
+
+  if (typeof document.execCommand !== "function") {
+    throw clipboardError || new Error("Clipboard copy is unavailable");
+  }
+
   const textArea = document.createElement("textarea");
   textArea.value = text;
   textArea.setAttribute("readonly", "");
@@ -184,23 +198,26 @@ async function writeClipboard(text) {
   textArea.remove();
   if (copied) return;
 
-  if (navigator.clipboard?.writeText) {
-    await navigator.clipboard.writeText(text);
-    return;
-  }
-
-  throw new Error("Clipboard copy failed");
+  throw clipboardError || new Error("Clipboard copy failed");
 }
 
 async function copyText(text, button) {
-  await writeClipboard(text);
   const original = button.textContent;
-  button.textContent = "Copied";
   button.disabled = true;
-  setTimeout(() => {
-    button.textContent = original;
-    button.disabled = false;
-  }, 1200);
+  let copied = false;
+  try {
+    await writeClipboard(text);
+    button.textContent = "Copied";
+    copied = true;
+  } catch {
+    button.textContent = "Copy unavailable";
+  } finally {
+    setTimeout(() => {
+      button.textContent = original;
+      button.disabled = false;
+    }, 1200);
+  }
+  return copied;
 }
 
 function copyTargetText(target) {
@@ -351,7 +368,8 @@ document.querySelectorAll("[data-copy-target]").forEach((button) => {
   button.addEventListener("click", async () => {
     const target = button.dataset.copyTarget;
     const text = copyTargetText(target);
-    await copyText(text, button);
+    const copied = await copyText(text, button);
+    if (!copied) return;
     postSignal(signalForCopyTarget(target), usercomMetadata({
       surface: "copy-control",
       tags: [`copy:${target}`],

@@ -209,30 +209,35 @@ h3 {
   color: var(--ink);
 }
 
-.text-link {
-  border-color: transparent;
-  background: transparent;
-  color: var(--muted);
-}
-
 .hero-copy-button {
   min-width: 190px;
 }
 
-.hero-proof {
+.hero-outcomes {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px 18px;
   max-width: 620px;
+  margin: 0;
+  padding: 0;
+  color: #e7dfce;
+  list-style: none;
 }
 
-.hero-proof span {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 9px 11px;
-  color: #f5eddc;
-  background: rgba(255, 255, 255, 0.045);
+.hero-outcomes li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   font-size: 13px;
+  line-height: 1.35;
+}
+
+.hero-outcomes li::before {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--green);
+  content: "";
 }
 
 .hero-media {
@@ -299,9 +304,11 @@ h3 {
   background: linear-gradient(90deg, #e9dfcc 64%, #d5cab8 64%);
 }
 
-.mini-app-body button {
+.mock-status {
+  display: inline-flex;
   min-height: 34px;
-  border: 0;
+  align-items: center;
+  justify-content: center;
   border-radius: 8px;
   background: #11100d;
   color: #f8f0df;
@@ -362,20 +369,32 @@ h3 {
   font-size: clamp(28px, 3vw, 42px);
 }
 
-.audience-grid {
+.audience-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 12px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.audience-grid span {
-  min-height: 72px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.045);
+.audience-list li {
+  display: flex;
+  min-height: 42px;
+  align-items: center;
   color: #f5eddc;
   font-weight: 800;
+  line-height: 1.25;
+}
+
+.audience-list li::before {
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  margin-right: 10px;
+  border-radius: 999px;
+  background: var(--gold);
+  content: "";
 }
 
 .examples-section {
@@ -1070,13 +1089,8 @@ pre {
     width: 100%;
   }
 
-  .hero-proof span {
-    padding: 7px 8px;
-    font-size: 12px;
-  }
-
-  .hero-proof {
-    display: none;
+  .hero-outcomes {
+    gap: 6px 12px;
   }
 
   .hero-media {
@@ -1103,7 +1117,7 @@ pre {
     font-size: 11px;
   }
 
-  .audience-grid,
+  .audience-list,
   .testimonial-grid {
     grid-template-columns: 1fr;
   }

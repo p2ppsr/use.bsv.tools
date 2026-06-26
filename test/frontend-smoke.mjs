@@ -6,7 +6,9 @@ const js = await readFile(new URL("../frontend/app.js", import.meta.url), "utf8"
 
 const requiredHtml = [
   "For AI-assisted founders and product builders",
-  "Add wallet login, tiny payments, private user data, or proof to your app with one AI-ready starter.",
+  "Add payments, private data, and proof with one BSV starter.",
+  "Copy the AI-ready reference into your coding agent",
+  "wallet login already in the path",
   "Copy LLM reference",
   "People who know the product, not necessarily the protocol.",
   "AI-assisted founders",
@@ -17,6 +19,7 @@ const requiredHtml = [
   "Paid AI action",
   "Private customer memory",
   "Signed creation proof",
+  "Paid result ready",
   "Builder proof slot",
   "Run the starter when you are ready to touch the real wallet flow.",
   "A real wallet-backed first win.",
@@ -87,6 +90,24 @@ assert.doesNotMatch(
   html,
   /bsv-tools-workbench\.png/,
   "old workbench hero image should not be used"
+);
+
+assert.doesNotMatch(
+  html,
+  /Unlock result/,
+  "mock app preview should not include fake button copy"
+);
+
+assert.doesNotMatch(
+  html,
+  /Tell us what to fix/,
+  "hero should not include a third CTA"
+);
+
+assert.doesNotMatch(
+  html,
+  /class="audience-grid"/,
+  "passive audience labels should not use the old card grid"
 );
 
 console.log("Frontend smoke checks passed.");
