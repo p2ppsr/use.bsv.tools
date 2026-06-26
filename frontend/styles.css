@@ -499,7 +499,7 @@ h3 {
 }
 
 .testimonial-grid article {
-  border: 1px dashed rgba(250, 247, 236, 0.28);
+  border-left: 3px solid rgba(107, 242, 143, 0.72);
   border-radius: 8px;
   padding: 18px;
   background: rgba(255, 255, 255, 0.035);
@@ -507,15 +507,50 @@ h3 {
 
 .testimonial-grid span {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   color: var(--gold);
   font-weight: 800;
 }
 
-.testimonial-grid p {
+.testimonial-grid h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.testimonial-grid blockquote {
+  margin: 0;
+}
+
+.testimonial-grid p,
+.testimonial-grid cite {
   margin: 0;
   color: var(--muted);
   line-height: 1.5;
+}
+
+.testimonial-grid blockquote p {
+  color: var(--paper);
+  font-size: 18px;
+}
+
+.testimonial-grid cite {
+  display: block;
+  margin-top: 10px;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.testimonial-grid a {
+  display: inline-block;
+  margin-top: 14px;
+  color: var(--green);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.testimonial-grid a:hover {
+  color: var(--paper);
 }
 
 .quick-start {

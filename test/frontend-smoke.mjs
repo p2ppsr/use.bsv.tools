@@ -20,7 +20,14 @@ const requiredHtml = [
   "Private customer memory",
   "Signed creation proof",
   "Paid result ready",
-  "Builder proof slot",
+  "Builder proof",
+  "Hands-on development with the BSV SDK",
+  "Metanet Academy Student",
+  "https://metanetacademy.com/",
+  "MetanetApps catalog",
+  "AuthSig",
+  "View AuthSig on MetanetApps",
+  "https://metanetapps.com/app/aca4733da793b5bc04a182f7a3d899cfe5bbc85b2ffa4967ccea62760c265f5e.0",
   "Run the starter when you are ready to touch the real wallet flow.",
   "A real wallet-backed first win.",
   "Choose the first BSV-powered behavior your app should prove.",
@@ -86,6 +93,12 @@ assert.doesNotMatch(
   html,
   /Use BSV tools to ship apps with money, memory, and proof built in\./,
   "old developer-first hero headline should not return"
+);
+
+assert.doesNotMatch(
+  html,
+  /Builder proof slot|App catalog slot/,
+  "placeholder proof slots should not return"
 );
 
 assert.doesNotMatch(
