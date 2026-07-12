@@ -12,7 +12,7 @@
     "test:starter": "npm --prefix starter ci && npm --prefix starter test"
   },
   "devDependencies": {
-    "@p2ppsr/cars-cli": "^1.2.13",
+    "@p2ppsr/cars-cli": "^1.2.31",
     "http-server": "^14.1.1"
   }
 }
