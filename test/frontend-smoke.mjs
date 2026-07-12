@@ -46,7 +46,10 @@ const requiredHtml = [
   "No signup screen first",
   "Charge per use",
   "User-held private data",
-  "Proof outside your database"
+  "Proof outside your database",
+  "Hard questions",
+  "Pressure-test BSV claims, tradeoffs, and common objections with linked sources.",
+  "https://bsv.place/?utm_source=use.bsv.tools&amp;utm_medium=referral&amp;utm_campaign=durable_evidence&amp;utm_content=toolkit_evidence_desk"
 ];
 
 for (const value of requiredHtml) {
