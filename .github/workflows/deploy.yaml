@@ -51,6 +51,34 @@ jobs:
             sleep "$((attempt * 20))"
           done
 
+      - name: Ensure CARS project balance
+        env:
+          CARS_PRIVATE_KEY: ${{ secrets.CARS_PRIVATE_KEY }}
+          CARS_WALLET_STORAGE: ${{ secrets.CARS_WALLET_STORAGE }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${CARS_PRIVATE_KEY:-}" ]; then
+            echo "CARS_PRIVATE_KEY repository secret is required." >&2
+            exit 1
+          fi
+
+          storage_args=()
+          if [ -n "${CARS_WALLET_STORAGE:-}" ]; then
+            storage_args=(--storage "$CARS_WALLET_STORAGE")
+          fi
+
+          npx cars doctor Babbage \
+            --key "$CARS_PRIVATE_KEY" \
+            --network mainnet \
+            "${storage_args[@]}"
+          npx cars project ensure-balance Babbage \
+            --key "$CARS_PRIVATE_KEY" \
+            --network mainnet \
+            "${storage_args[@]}" \
+            --min 1 \
+            --topup-to 250000
+
       - name: Deploy CARS release
         env:
           CARS_PRIVATE_KEY: ${{ secrets.CARS_PRIVATE_KEY }}
