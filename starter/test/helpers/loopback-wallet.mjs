@@ -1,5 +1,5 @@
 import http from "node:http";
-import { CompletedProtoWallet, PrivateKey } from "@bsv/sdk";
+import { Beef, CompletedProtoWallet, LockingScript, PrivateKey, Transaction } from "@bsv/sdk";
 
 class LoopbackWallet extends CompletedProtoWallet {
   constructor(rootKey) {
@@ -10,7 +10,16 @@ class LoopbackWallet extends CompletedProtoWallet {
 
   async createAction(args, originator) {
     this.createdActions.push({ args, originator });
-    return { tx: [0xbe, 0xef] };
+    const transaction = new Transaction();
+    for (const output of args.outputs || []) {
+      transaction.addOutput({
+        satoshis: output.satoshis,
+        lockingScript: LockingScript.fromHex(output.lockingScript)
+      });
+    }
+    const beef = new Beef();
+    beef.mergeTransaction(transaction);
+    return { tx: beef.toBinaryAtomic(transaction.id("hex")) };
   }
 
   async internalizeAction(args, originator) {

@@ -55,7 +55,7 @@ try {
     headers: { "content-type": "application/json" },
     body: JSON.stringify({ prompt: "test" })
   });
-  assert.equal(paid.status, 200);
+  assert.equal(paid.status, 200, await paid.clone().text());
   const paidBody = await paid.json();
   assert.equal(paidBody.paid, true);
   assert.equal(paidBody.satoshisPaid, 3);

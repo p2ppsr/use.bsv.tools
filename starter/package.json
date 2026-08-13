@@ -12,9 +12,9 @@
     "test:wallet-loop": "node ./test/wallet-loop.mjs"
   },
   "dependencies": {
-    "@bsv/auth-express-middleware": "^2.0.6",
-    "@bsv/payment-express-middleware": "^2.0.3",
-    "@bsv/sdk": "2.1.4",
+    "@bsv/auth-express-middleware": "^2.2.1",
+    "@bsv/payment-express-middleware": "^2.1.5",
+    "@bsv/sdk": "2.4.0",
     "express": "^5.2.1"
   },
   "engines": {
