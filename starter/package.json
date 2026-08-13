@@ -19,5 +19,8 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "overrides": {
+    "@bsv/sdk": "$@bsv/sdk"
   }
 }

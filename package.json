@@ -14,5 +14,8 @@
   "devDependencies": {
     "@p2ppsr/cars-cli": "^1.2.31",
     "http-server": "^14.1.1"
+  },
+  "overrides": {
+    "@bsv/sdk": "2.4.0"
   }
 }
